@@ -406,8 +406,11 @@
 
       if (dy > 70 && dt < 260 && dxTotal < 60) {
         engine.hardDrop(); // fast downward flick
+      } else if (dy < -45 && dxTotal < 60) {
+        // upward swipe rotates
+        if (engine.status === 'playing' && engine.rotateCW()) Sound.sfx.rotate();
       } else if (!gesture.moved && dt < 260 && dxTotal < 12 && Math.abs(dy) < 12) {
-        // tap on the piece itself rotates it
+        // tap on the piece itself also rotates it
         if (engine.status === 'playing' && tapOnPiece(e) && engine.rotateCW()) {
           Sound.sfx.rotate();
         }
