@@ -3,6 +3,8 @@
 A classic-games website in Pokémon style. Pure HTML/CSS/JS, no build step —
 open `index.html` directly or serve it from any static host.
 
+**Play it live:** https://iihannibalii.github.io/pokemon-arcade/
+
 ## Structure
 
 ```
@@ -36,7 +38,7 @@ pokemon-arcade/
    auto-pause on focus loss, board shake on a tetris, favicon
 5. ✅ Background art generated with local AI (ComfyUI + SDXL, pixel-art style)
 6. ⬜ PokéSnake
-7. ⬜ (optional) Publish online
+7. ✅ Published on GitHub Pages
 
 ## Principles
 
