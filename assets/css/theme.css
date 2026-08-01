@@ -1,0 +1,155 @@
+/* ============================================================
+   PokéArcade — shared theme (arcade-shell)
+   Tokens and reusable components for every game.
+   ============================================================ */
+
+:root {
+  /* Poké Ball & Pikachu palette */
+  --poke-red: #ee1515;
+  --poke-red-dark: #b00b0b;
+  --poke-yellow: #ffcb05;
+  --poke-yellow-dark: #c7a008;
+  --poke-blue: #3b4cca;
+  --poke-blue-light: #7fc7ff;
+  --poke-cream: #f8f0d8;
+  --poke-ink: #212121;
+  --poke-white: #ffffff;
+  --poke-screen: #9bbc0f; /* Game Boy screen green */
+  --poke-screen-dark: #0f380f;
+
+  /* Pokémon type colors (used for Tetris pieces) */
+  --type-electric: #f8d030;
+  --type-fire: #f08030;
+  --type-water: #6890f0;
+  --type-grass: #78c850;
+  --type-psychic: #f85888;
+  --type-ice: #98d8d8;
+  --type-dragon: #7038f8;
+
+  --font-pixel: 'Press Start 2P', 'Courier New', monospace;
+  --pixel-border: 4px solid var(--poke-ink);
+  --pixel-shadow: 6px 6px 0 rgba(33, 33, 33, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-pixel);
+  color: var(--poke-ink);
+  background-color: var(--poke-cream);
+  /* subtle pixel grid, like walking through tall grass */
+  background-image:
+    linear-gradient(rgba(120, 200, 80, 0.07) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(120, 200, 80, 0.07) 2px, transparent 2px);
+  background-size: 24px 24px;
+  image-rendering: pixelated;
+}
+
+/* ---------- Poké Ball button ---------- */
+.poke-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 22px;
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--poke-white);
+  background: var(--poke-red);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  cursor: pointer;
+  transition: transform 0.08s steps(2), box-shadow 0.08s steps(2);
+}
+
+.poke-btn:hover {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 rgba(33, 33, 33, 0.9);
+  background: var(--poke-red-dark);
+}
+
+.poke-btn:active {
+  transform: translate(6px, 6px);
+  box-shadow: 0 0 0 rgba(33, 33, 33, 0.9);
+}
+
+.poke-btn[aria-disabled='true'] {
+  background: #9e9e9e;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ---------- Type badges (like Pokémon battle UI) ---------- */
+.type-badge {
+  display: inline-block;
+  padding: 6px 10px;
+  font-size: 9px;
+  color: var(--poke-white);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.45);
+  border: 3px solid var(--poke-ink);
+  border-radius: 2px;
+}
+
+.type-badge--electric { background: var(--type-electric); color: var(--poke-ink); text-shadow: none; }
+.type-badge--fire     { background: var(--type-fire); }
+.type-badge--water    { background: var(--type-water); }
+.type-badge--grass    { background: var(--type-grass); }
+.type-badge--psychic  { background: var(--type-psychic); }
+.type-badge--ice      { background: var(--type-ice); color: var(--poke-ink); text-shadow: none; }
+.type-badge--dragon   { background: var(--type-dragon); }
+
+/* ---------- Poké Ball (pure CSS, spins and bounces) ---------- */
+.pokeball {
+  --size: 40px;
+  width: var(--size);
+  height: var(--size);
+  flex: 0 0 auto;
+  border-radius: 50%;
+  border: 3px solid var(--poke-ink);
+  background:
+    radial-gradient(circle at center, var(--poke-white) 0 14%, var(--poke-ink) 15% 24%, transparent 25%),
+    linear-gradient(to bottom, var(--poke-red) 0 45%, var(--poke-ink) 45% 55%, var(--poke-white) 55% 100%);
+}
+
+.pokeball--bounce {
+  animation: pokeball-bounce 1.1s steps(6) infinite;
+}
+
+@keyframes pokeball-bounce {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30%      { transform: translateY(-14px) rotate(-14deg); }
+  60%      { transform: translateY(0) rotate(10deg); }
+  80%      { transform: translateY(-5px) rotate(-4deg); }
+}
+
+/* ---------- "Pokédex screen" panel ---------- */
+.dex-panel {
+  background: var(--poke-white);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 20px;
+}
+
+/* ---------- Scrolling ticker ---------- */
+.ticker {
+  overflow: hidden;
+  border-top: var(--pixel-border);
+  border-bottom: var(--pixel-border);
+  background: var(--poke-yellow);
+  padding: 10px 0;
+  white-space: nowrap;
+}
+
+.ticker__inner {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker-scroll 18s linear infinite;
+  font-size: 11px;
+}
+
+@keyframes ticker-scroll {
+  to { transform: translateX(-100%); }
+}

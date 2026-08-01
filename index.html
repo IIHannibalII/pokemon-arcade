@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PokéArcade — Classic Games</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fff' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M4 50 a46 46 0 0 1 92 0 z' fill='%23ee1515'/%3E%3Crect x='4' y='44' width='92' height='12' fill='%23212121'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23fff' stroke='%23212121' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/theme.css?v=5">
+  <link rel="stylesheet" href="assets/css/hub.css?v=5">
+</head>
+<body>
+
+  <header class="pokedex-top">
+    <div class="pokedex-top__hardware">
+      <div class="dex-lens" aria-hidden="true"></div>
+      <div class="dex-led dex-led--red" aria-hidden="true"></div>
+      <div class="dex-led dex-led--yellow" aria-hidden="true"></div>
+      <div class="dex-led dex-led--green" aria-hidden="true"></div>
+      <div class="pokeball pokeball--bounce" style="margin-left:auto" aria-hidden="true"></div>
+    </div>
+    <h1>POKÉARCADE</h1>
+    <p>Classic games in a Pokémon world · Gotta play 'em all!</p>
+  </header>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker__inner">
+      ⚡ TETRIS is now live! &nbsp;·&nbsp; 🐍 SNAKE is hatching from its egg soon… &nbsp;·&nbsp;
+      🔴 Clear every line and become the League Champion! &nbsp;·&nbsp; ⭐ High scores are saved in your Pokédex
+    </div>
+  </div>
+
+  <main class="games-grid">
+
+    <!-- ======== Card: Tetris ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>PokéTetris</h2>
+        <span class="game-card__hp">HP 100 ❤</span>
+      </div>
+
+      <div class="game-card__screen">
+        <div class="tetro-preview" aria-hidden="true">
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--electric">⚡</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--water">💧</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+
+          <div class="tetro-cell tetro-cell--electric">⚡</div>
+          <div class="tetro-cell tetro-cell--electric">⚡</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--water">💧</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+
+          <div class="tetro-cell tetro-cell--electric">⚡</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--psychic">🔮</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+          <div class="tetro-cell tetro-cell--water">💧</div>
+          <div class="tetro-cell tetro-cell--empty"></div>
+
+          <div class="tetro-cell tetro-cell--fire">🔥</div>
+          <div class="tetro-cell tetro-cell--psychic">🔮</div>
+          <div class="tetro-cell tetro-cell--psychic">🔮</div>
+          <div class="tetro-cell tetro-cell--fire">🔥</div>
+          <div class="tetro-cell tetro-cell--water">💧</div>
+          <div class="tetro-cell tetro-cell--fire">🔥</div>
+        </div>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--electric">⚡ Electric</span>
+        <span class="type-badge type-badge--psychic">🔮 Puzzle</span>
+      </div>
+
+      <p class="game-card__desc">
+        Energy-stone pieces of seven Pokémon types fall into the Pokédex.
+        Clear lines to catch Pokémon, level up and evolve!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/tetris/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
+    <!-- ======== Card: Snake (coming soon) ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>PokéSnake</h2>
+        <span class="game-card__hp">HP ??? ❤</span>
+      </div>
+
+      <div class="game-card__screen">
+        <span class="coming-soon-stamp">SOON</span>
+        <div class="whos-that">
+          <!-- Snake-Pokémon silhouette (original art) -->
+          <svg width="150" height="110" viewBox="0 0 150 110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Silhouette of a snake Pokémon">
+            <path d="M20 95 q-12 -18 6 -28 q20 -11 44 -8 q22 3 34 -6 q12 -10 2 -22 q-8 -10 -24 -8 q-10 2 -12 10 q-2 8 8 10 q8 1 10 -5"
+                  fill="none" stroke="#0f380f" stroke-width="16" stroke-linecap="round"/>
+            <circle cx="88" cy="30" r="14" fill="#0f380f"/>
+            <text x="112" y="72" font-size="42" fill="#0f380f" font-family="monospace">?</text>
+          </svg>
+          <span>Who's that Pokémon?</span>
+        </div>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--grass">🍃 Grass</span>
+        <span class="type-badge type-badge--dragon">🐉 Arcade</span>
+      </div>
+
+      <p class="game-card__desc">
+        A wild snake catches Poké Balls and grows with every catch.
+        It will hatch from its egg right after PokéTetris — keep an eye on your Pokédex!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="#" aria-disabled="true">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Coming soon…
+        </a>
+      </div>
+    </article>
+
+  </main>
+
+  <footer class="arcade-footer">
+    A Pokémon-style fan project — every piece of art is drawn in code.<br>
+    Not affiliated with Nintendo, Game Freak, or The Pokémon Company.
+  </footer>
+
+</body>
+</html>
