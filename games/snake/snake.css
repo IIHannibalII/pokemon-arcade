@@ -1,18 +1,7 @@
 /* ============================================================
-   PokéTetris — game page styles.
+   PokéSnake — game page styles.
    Builds on the shared theme (theme.css).
    ============================================================ */
-
-/* Locally generated pixel-art night meadow (SDXL) behind the
-   panels; dark overlay keeps the playfield the focus. */
-body {
-  background-image:
-    linear-gradient(rgba(15, 25, 20, 0.42), rgba(15, 25, 20, 0.42)),
-    url('../../assets/img/tetris-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
 
 .game-header {
   display: flex;
@@ -61,8 +50,8 @@ body {
   background: var(--poke-cream);
 }
 
-/* ---------- Layout: hold+partner | board | next+stats ---------- */
-.tetris-layout {
+/* ---------- Layout: board | stats ---------- */
+.snake-layout {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -92,12 +81,6 @@ body {
   padding-bottom: 8px;
 }
 
-.panel-box canvas {
-  display: block;
-  margin: 0 auto;
-  border: 3px solid var(--poke-ink);
-}
-
 .stat-value {
   display: block;
   font-size: 15px;
@@ -119,6 +102,12 @@ body {
 
 .stat-row:last-child {
   margin-bottom: 0;
+}
+
+.howto {
+  margin: 0;
+  font-size: 8px;
+  line-height: 1.9;
 }
 
 /* ---------- Playfield ---------- */
@@ -147,7 +136,7 @@ body {
   background: rgba(15, 56, 15, 0.82);
   color: var(--poke-white);
   line-height: 1.6;
-  /* let taps fall through to the board canvas (tap to start) */
+  /* taps must fall through to the board canvas (tap to start) */
   pointer-events: none;
 }
 
@@ -171,120 +160,6 @@ body {
 
 @keyframes overlay-blink {
   50% { opacity: 0.35; }
-}
-
-/* ---------- Controls reference strip ---------- */
-.controls-strip {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px 20px;
-  padding: 0 16px 30px;
-  font-size: 8px;
-  color: var(--poke-cream);
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
-}
-
-.controls-strip kbd {
-  display: inline-block;
-  min-width: 22px;
-  text-align: center;
-  background: var(--poke-white);
-  border: 2px solid var(--poke-ink);
-  border-radius: 3px;
-  padding: 2px 4px;
-  font-family: inherit;
-  font-size: 8px;
-  margin-right: 4px;
-}
-
-/* ---------- Partner mascot ---------- */
-#mascot {
-  display: block;
-  margin: 0 auto;
-  image-rendering: pixelated;
-  border: none;
-}
-
-.mascot-name {
-  display: block;
-  text-align: center;
-  font-size: 9px;
-  margin-top: 8px;
-  color: var(--poke-blue);
-}
-
-.evo-msg {
-  min-height: 26px;
-  margin-top: 8px;
-  font-size: 7px;
-  line-height: 1.8;
-  text-align: center;
-  color: var(--poke-red);
-}
-
-/* ---------- Battle-style energy bar ---------- */
-.hp-bar {
-  height: 12px;
-  margin-top: 6px;
-  border: 3px solid var(--poke-ink);
-  background: var(--poke-white);
-}
-
-.hp-fill {
-  height: 100%;
-  width: 100%;
-  background: #4caf50;
-  transition: width 0.2s steps(4);
-}
-
-.hp-fill--mid { background: var(--poke-yellow); }
-.hp-fill--low { background: var(--poke-red); }
-
-/* ---------- Catch FX label over the board ---------- */
-.fx-label {
-  position: absolute;
-  top: 38%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 14px;
-  color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-ink), -2px 2px 0 var(--poke-ink),
-               2px -2px 0 var(--poke-ink), -2px -2px 0 var(--poke-ink);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.fx-label.fx--legendary {
-  font-size: 17px;
-  color: var(--poke-red);
-  text-shadow: 2px 2px 0 var(--poke-yellow), -2px 2px 0 var(--poke-yellow),
-               2px -2px 0 var(--poke-yellow), -2px -2px 0 var(--poke-yellow);
-}
-
-.fx-label.fx--run {
-  animation: fx-float 1s steps(8) forwards;
-}
-
-@keyframes fx-float {
-  0%   { opacity: 0; transform: translateY(12px) scale(0.7); }
-  15%  { opacity: 1; transform: translateY(0) scale(1.1); }
-  30%  { transform: translateY(-4px) scale(1); }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-26px) scale(1); }
-}
-
-/* Board shake on a legendary (4-line) catch */
-.board-wrap.shake {
-  animation: board-shake 0.35s steps(2);
-}
-
-@keyframes board-shake {
-  0%, 100% { transform: translate(0, 0); }
-  25%      { transform: translate(-4px, 2px); }
-  50%      { transform: translate(4px, -2px); }
-  75%      { transform: translate(-2px, -2px); }
 }
 
 /* ---------- Leaderboard inside the overlay ---------- */
@@ -329,23 +204,81 @@ body {
   animation: overlay-blink 1.2s steps(2) infinite;
 }
 
-/* ---------- On-screen touch controls ---------- */
+/* ---------- Catch FX label over the board ---------- */
+.fx-label {
+  position: absolute;
+  top: 34%;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--poke-yellow);
+  text-shadow: 2px 2px 0 var(--poke-ink), -2px 2px 0 var(--poke-ink),
+               2px -2px 0 var(--poke-ink), -2px -2px 0 var(--poke-ink);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.fx-label.fx--legendary {
+  font-size: 15px;
+  color: var(--poke-red);
+  text-shadow: 2px 2px 0 var(--poke-yellow), -2px 2px 0 var(--poke-yellow),
+               2px -2px 0 var(--poke-yellow), -2px -2px 0 var(--poke-yellow);
+}
+
+.fx-label.fx--run {
+  animation: fx-float 1s steps(8) forwards;
+}
+
+@keyframes fx-float {
+  0%   { opacity: 0; transform: translateY(12px) scale(0.7); }
+  15%  { opacity: 1; transform: translateY(0) scale(1.1); }
+  30%  { transform: translateY(-4px) scale(1); }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-26px) scale(1); }
+}
+
+/* ---------- Controls reference strip ---------- */
+.controls-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 20px;
+  padding: 0 16px 30px;
+  font-size: 8px;
+  color: var(--poke-ink);
+}
+
+.controls-strip kbd {
+  display: inline-block;
+  min-width: 22px;
+  text-align: center;
+  background: var(--poke-white);
+  border: 2px solid var(--poke-ink);
+  border-radius: 3px;
+  padding: 2px 4px;
+  font-family: inherit;
+  font-size: 8px;
+  margin-right: 4px;
+}
+
+/* ---------- On-screen touch D-pad ---------- */
 .touch-controls {
   display: none;
-  grid-template-columns: repeat(3, minmax(72px, 96px));
-  gap: 12px;
+  grid-template-columns: repeat(3, minmax(64px, 104px));
+  gap: 8px;
   justify-content: center;
-  padding: 0 16px 30px;
+  padding: 0 10px 14px;
 }
 
 .touch-controls button {
-  height: 54px;
+  height: 48px;
   font-family: var(--font-pixel);
   font-size: 14px;
   color: var(--poke-ink);
   background: var(--poke-white);
   border: var(--pixel-border);
-  box-shadow: 4px 4px 0 rgba(33, 33, 33, 0.9);
+  box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
   cursor: pointer;
   touch-action: none;
   user-select: none;
@@ -358,76 +291,7 @@ body {
   background: var(--poke-yellow);
 }
 
-.touch-controls .touch-drop {
-  grid-column: 1 / -1;
-  background: var(--poke-red);
-  color: var(--poke-white);
-  font-size: 12px;
-}
-
-.touch-controls .touch-drop:active {
-  background: var(--poke-red-dark);
-}
-
-/* ---------- Responsive layout ---------- */
-@media (max-width: 900px) {
-  .tetris-layout {
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-
-  .board-wrap {
-    order: -1;
-    flex: 0 0 auto;
-    margin: 0 auto;
-  }
-
-  .side-panel {
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: auto;
-  }
-
-  .side-panel .panel-box {
-    width: 180px;
-  }
-}
-
-@media (max-width: 720px) {
-  #board {
-    width: min(280px, 92vw);
-    height: auto;
-    image-rendering: pixelated;
-  }
-
-  .game-header h1 {
-    font-size: 13px;
-  }
-
-  .controls-strip {
-    display: none;
-  }
-
-  .touch-controls {
-    display: grid;
-  }
-}
-
-/* Touch-first devices get on-screen buttons regardless of width */
-@media (hover: none) and (pointer: coarse) {
-  .controls-strip {
-    display: none;
-  }
-
-  .touch-controls {
-    display: grid;
-  }
-}
-
-/* ---------- Single-screen phone layout ----------
-   Everything — compact info strip, playfield and buttons —
-   must fit one viewport so the board never scrolls away. */
+/* ---------- Single-screen phone layout ---------- */
 @media (max-width: 720px), (hover: none) and (pointer: coarse) {
   /* the game page must never scroll, rubber-band or pull-to-refresh */
   html, body {
@@ -445,7 +309,7 @@ body {
     font-size: 12px;
   }
 
-  .tetris-layout {
+  .snake-layout {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -454,15 +318,15 @@ body {
     padding: 10px 8px 6px;
   }
 
-  /* dissolve the side panels: their boxes become one compact strip */
   .side-panel {
     display: contents;
   }
 
+  /* stats become a compact strip above the board */
   .side-panel .panel-box {
     order: -1;
-    width: 78px;
-    padding: 5px 5px 6px;
+    width: 160px;
+    padding: 5px 6px 6px;
     box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
   }
 
@@ -474,28 +338,10 @@ body {
     border-bottom-width: 2px;
   }
 
-  .side-panel .panel-box canvas {
-    max-height: 62px;
-    width: auto;
-    max-width: 100%;
-    border-width: 2px;
-  }
-
-  #mascot {
-    height: 62px;
-  }
-
-  .mascot-name {
-    font-size: 6px;
-    margin-top: 3px;
-  }
-
-  .evo-msg {
-    display: none;
-  }
-
-  .stat-row {
-    margin-bottom: 3px;
+  .side-panel .panel-box:first-child .stat-row {
+    display: inline-block;
+    width: 48%;
+    margin-bottom: 2px;
   }
 
   .stat-label {
@@ -507,23 +353,20 @@ body {
     margin-top: 1px;
   }
 
-  .hp-bar {
-    height: 7px;
-    margin-top: 2px;
-    border-width: 2px;
+  .howto {
+    font-size: 6px;
+    line-height: 1.7;
   }
 
-  /* the playfield scales to whatever height is left */
   .board-wrap {
     order: 0;
-    flex: 0 0 auto;
     margin: 0 auto;
   }
 
   #board {
-    height: min(calc(100vh - 300px), 560px);
-    height: min(calc(100dvh - 300px), 560px);
-    width: auto;
+    width: min(calc(100vw - 10px), calc(100vh - 330px));
+    width: min(calc(100vw - 10px), calc(100dvh - 330px));
+    height: auto;
     image-rendering: pixelated;
   }
 
@@ -544,22 +387,18 @@ body {
   }
 
   .fx-label {
-    font-size: 11px;
+    font-size: 10px;
   }
 
   .fx-label.fx--legendary {
-    font-size: 13px;
+    font-size: 12px;
+  }
+
+  .controls-strip {
+    display: none;
   }
 
   .touch-controls {
-    grid-template-columns: repeat(3, minmax(64px, 104px));
-    gap: 8px;
-    padding: 0 10px 14px;
-  }
-
-  .touch-controls button {
-    height: 44px;
-    font-size: 12px;
-    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+    display: grid;
   }
 }

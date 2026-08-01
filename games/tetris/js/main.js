@@ -361,9 +361,16 @@
         Math.abs(cx - (px + 0.5)) <= TAP_HALO && Math.abs(cy - (py + 0.5)) <= TAP_HALO);
     }
 
-    els.board.style.touchAction = 'none';
+    /* On touch devices the whole page is the gesture surface, so a
+       finger slightly off the board still controls the game (the board
+       canvas alone is enough for the mouse). */
+    const coarse = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const surface = (coarse && document.querySelector('.tetris-layout')) || els.board;
 
-    els.board.addEventListener('pointerdown', (e) => {
+    els.board.style.touchAction = 'none';
+    surface.style.touchAction = 'none';
+
+    surface.addEventListener('pointerdown', (e) => {
       e.preventDefault();
       Sound.unlock();
       if (engine.status === 'ready' || engine.status === 'over') {
@@ -378,7 +385,7 @@
       gesture.soft = false;
     });
 
-    els.board.addEventListener('pointermove', (e) => {
+    surface.addEventListener('pointermove', (e) => {
       if (!gesture.active) return;
       const dx = e.clientX - gesture.lastX;
       if (Math.abs(dx) >= SWIPE_CELL) {
@@ -420,9 +427,9 @@
         }
       }
     };
-    els.board.addEventListener('pointerup', endGesture);
-    els.board.addEventListener('pointercancel', endGesture);
-    els.board.addEventListener('contextmenu', (e) => e.preventDefault());
+    surface.addEventListener('pointerup', endGesture);
+    surface.addEventListener('pointercancel', endGesture);
+    surface.addEventListener('contextmenu', (e) => e.preventDefault());
 
     /* Auto-pause when the window loses focus mid-game. */
     window.addEventListener('blur', () => {

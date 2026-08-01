@@ -18,6 +18,14 @@ pokemon-arcade/
 │       ├── hub-bg.png    # Pixel-art meadow, generated locally (ComfyUI + SDXL)
 │       └── tetris-bg.png # Pixel-art night meadow, generated locally
 └── games/
+    ├── snake/
+    │   ├── index.html    # PokéSnake game page
+    │   ├── snake.css     # Game-page styles
+    │   └── js/
+    │       ├── engine.js # Pure game logic: movement, growth, bonus balls, levels
+    │       ├── sound.js  # WebAudio synth: SFX + its own original chiptune loop
+    │       ├── render.js # Canvas renderer: connected snake body, Poké Ball food
+    │       └── main.js   # Input (keys / swipes / D-pad), loop, HUD, leaderboard
     └── tetris/
         ├── index.html    # PokéTetris game page
         ├── tetris.css    # Game-page styles
@@ -37,8 +45,9 @@ pokemon-arcade/
 4. ✅ Polish: top-5 leaderboard, touch controls + swipe gestures, responsive layout,
    auto-pause on focus loss, board shake on a tetris, favicon
 5. ✅ Background art generated with local AI (ComfyUI + SDXL, pixel-art style)
-6. ⬜ PokéSnake
+6. ✅ PokéSnake (catch Poké Balls, bonus Great Balls, leaderboard, touch controls)
 7. ✅ Published on GitHub Pages
+8. ⬜ Future: full re-theme to a space setting (drops the Pokémon IP)
 
 ## Principles
 
