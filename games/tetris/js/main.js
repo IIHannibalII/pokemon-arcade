@@ -342,6 +342,20 @@
 
     const gesture = { active: false, x0: 0, y0: 0, t0: 0, lastX: 0, moved: false, soft: false };
     const SWIPE_CELL = 26;
+    const TAP_HALO = 1.5; // cells around the piece that still count as tapping it
+
+    /* Rotation is a tap on the falling piece itself (with a small
+       forgiving halo), evaluated when the finger is released. */
+    function tapOnPiece(e) {
+      const c = engine.current;
+      if (!c) return false;
+      const rect = els.board.getBoundingClientRect();
+      const { COLS, VISIBLE_ROWS, HIDDEN_ROWS } = NS.CONST;
+      const cx = ((e.clientX - rect.left) / rect.width) * COLS;
+      const cy = ((e.clientY - rect.top) / rect.height) * VISIBLE_ROWS + HIDDEN_ROWS;
+      return engine.cellsOf(c.x, c.y, c.rot, c.id).some(([px, py]) =>
+        Math.abs(cx - (px + 0.5)) <= TAP_HALO && Math.abs(cy - (py + 0.5)) <= TAP_HALO);
+    }
 
     els.board.style.touchAction = 'none';
 
@@ -393,7 +407,10 @@
       if (dy > 70 && dt < 260 && dxTotal < 60) {
         engine.hardDrop(); // fast downward flick
       } else if (!gesture.moved && dt < 260 && dxTotal < 12 && Math.abs(dy) < 12) {
-        if (engine.status === 'playing' && engine.rotateCW()) Sound.sfx.rotate(); // tap
+        // tap on the piece itself rotates it
+        if (engine.status === 'playing' && tapOnPiece(e) && engine.rotateCW()) {
+          Sound.sfx.rotate();
+        }
       }
     };
     els.board.addEventListener('pointerup', endGesture);

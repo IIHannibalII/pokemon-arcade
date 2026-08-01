@@ -422,3 +422,134 @@ body {
     display: grid;
   }
 }
+
+/* ---------- Single-screen phone layout ----------
+   Everything — compact info strip, playfield and buttons —
+   must fit one viewport so the board never scrolls away. */
+@media (max-width: 720px), (hover: none) and (pointer: coarse) {
+  .game-header {
+    padding: 8px 14px;
+  }
+
+  .game-header h1 {
+    font-size: 12px;
+  }
+
+  .tetris-layout {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 10px 8px 6px;
+  }
+
+  /* dissolve the side panels: their boxes become one compact strip */
+  .side-panel {
+    display: contents;
+  }
+
+  .side-panel .panel-box {
+    order: -1;
+    width: 78px;
+    padding: 5px 5px 6px;
+    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+  }
+
+  .panel-box h3 {
+    font-size: 6px;
+    letter-spacing: 0;
+    margin: 0 0 4px;
+    padding-bottom: 3px;
+    border-bottom-width: 2px;
+  }
+
+  .side-panel .panel-box canvas {
+    max-height: 62px;
+    width: auto;
+    max-width: 100%;
+    border-width: 2px;
+  }
+
+  #mascot {
+    height: 62px;
+  }
+
+  .mascot-name {
+    font-size: 6px;
+    margin-top: 3px;
+  }
+
+  .evo-msg {
+    display: none;
+  }
+
+  .stat-row {
+    margin-bottom: 3px;
+  }
+
+  .stat-label {
+    font-size: 5px;
+  }
+
+  .stat-value {
+    font-size: 8px;
+    margin-top: 1px;
+  }
+
+  .hp-bar {
+    height: 7px;
+    margin-top: 2px;
+    border-width: 2px;
+  }
+
+  /* the playfield scales to whatever height is left */
+  .board-wrap {
+    order: 0;
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+
+  #board {
+    height: min(calc(100vh - 300px), 560px);
+    height: min(calc(100dvh - 300px), 560px);
+    width: auto;
+    image-rendering: pixelated;
+  }
+
+  .overlay h2 {
+    font-size: 13px;
+  }
+
+  .overlay p {
+    font-size: 8px;
+  }
+
+  .ranking {
+    font-size: 7px;
+  }
+
+  .ranking li {
+    min-width: 130px;
+  }
+
+  .fx-label {
+    font-size: 11px;
+  }
+
+  .fx-label.fx--legendary {
+    font-size: 13px;
+  }
+
+  .touch-controls {
+    grid-template-columns: repeat(3, minmax(64px, 104px));
+    gap: 8px;
+    padding: 0 10px 14px;
+  }
+
+  .touch-controls button {
+    height: 44px;
+    font-size: 12px;
+    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+  }
+}
