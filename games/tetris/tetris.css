@@ -147,6 +147,8 @@ body {
   background: rgba(15, 56, 15, 0.82);
   color: var(--poke-white);
   line-height: 1.6;
+  /* let taps fall through to the board canvas (tap to start) */
+  pointer-events: none;
 }
 
 .overlay[hidden] {

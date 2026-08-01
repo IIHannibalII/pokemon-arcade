@@ -315,6 +315,10 @@
       btn.addEventListener('pointerdown', (e) => {
         e.preventDefault();
         Sound.unlock();
+        if (engine.status === 'ready' || engine.status === 'over') {
+          startGame();
+          return;
+        }
         if (act === 'left') { held.left = true; pressMove(-1); }
         else if (act === 'right') { held.right = true; pressMove(1); }
         else if (act === 'down') engine.setSoftDrop(true);
