@@ -82,6 +82,23 @@ body {
   line-height: 1.9;
 }
 
+.hall-link {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 8px 14px;
+  font-size: 9px;
+  color: var(--poke-ink);
+  background: var(--poke-yellow);
+  border: 3px solid var(--poke-ink);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+}
+
+.hall-link:hover {
+  transform: translate(1px, 1px);
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.5);
+}
+
 /* ---------- Deck section titles ---------- */
 .deck-title {
   display: flex;

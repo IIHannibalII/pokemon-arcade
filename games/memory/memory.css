@@ -1,14 +1,13 @@
 /* ============================================================
-   PokéSnake — game page styles.
+   AstroMemory — game page styles.
    Builds on the shared theme (theme.css).
    ============================================================ */
 
-/* Locally generated pixel-art comet streaks (SDXL) behind the
-   panels; strong overlay keeps the board the focus. */
+/* Locally generated pixel-art alien night (SDXL) behind the panels. */
 body {
   background-image:
-    linear-gradient(rgba(6, 10, 24, 0.68), rgba(6, 10, 24, 0.68)),
-    url('../../assets/img/snake-bg.png');
+    linear-gradient(rgba(6, 10, 24, 0.58), rgba(6, 10, 24, 0.58)),
+    url('../../assets/img/tetris-bg.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -61,8 +60,8 @@ body {
   background: var(--poke-cream);
 }
 
-/* ---------- Layout: board | stats ---------- */
-.snake-layout {
+/* ---------- Layout: cards | stats ---------- */
+.memory-layout {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -122,20 +121,107 @@ body {
   line-height: 1.9;
 }
 
-/* ---------- Playfield ---------- */
-.board-wrap {
+.diff-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diff-btn {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  padding: 9px 8px;
+  color: var(--poke-ink);
+  background: var(--poke-white);
+  border: 3px solid var(--poke-ink);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.diff-btn:hover {
+  background: var(--poke-cream);
+}
+
+.diff-btn.diff-active {
+  background: var(--poke-yellow);
+}
+
+/* ---------- Card table ---------- */
+.cards-wrap {
   position: relative;
+  width: 440px;
+  max-width: 100%;
+  padding: 12px;
+  background: var(--poke-screen);
   border: var(--pixel-border);
   box-shadow: var(--pixel-shadow);
-  line-height: 0;
 }
 
-#board {
-  display: block;
-  background: var(--poke-screen);
+.cards {
+  display: grid;
+  gap: 8px;
 }
 
-/* Overlay: start / pause / game over */
+.card {
+  position: relative;
+  aspect-ratio: 1;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  perspective: 500px;
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.card-inner {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.28s ease;
+}
+
+.card.open .card-inner,
+.card.matched .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border: 3px solid var(--poke-ink);
+  font-size: clamp(18px, 5vw, 30px);
+  line-height: 1;
+}
+
+.card-back {
+  background: #2b3358;
+  color: rgba(248, 240, 216, 0.5);
+  box-shadow: inset 0 3px 0 rgba(255, 255, 255, 0.2),
+              inset 0 -3px 0 rgba(0, 0, 0, 0.35);
+}
+
+.card-front {
+  background: var(--poke-cream);
+  transform: rotateY(180deg);
+}
+
+.card.matched .card-front {
+  background: #cfe8c4;
+  filter: saturate(0.85);
+}
+
+.card.matched {
+  cursor: default;
+}
+
+/* Overlay: pause / win */
 .overlay {
   position: absolute;
   inset: 0;
@@ -145,11 +231,11 @@ body {
   justify-content: center;
   gap: 16px;
   text-align: center;
-  background: rgba(6, 10, 24, 0.86);
+  background: rgba(6, 10, 24, 0.88);
   color: var(--poke-white);
   line-height: 1.6;
-  /* taps must fall through to the board canvas (tap to start) */
   pointer-events: none;
+  z-index: 2;
 }
 
 .overlay[hidden] {
@@ -158,9 +244,9 @@ body {
 
 .overlay h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 15px;
   color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-blue);
+  text-shadow: 2px 2px 0 var(--poke-red);
 }
 
 .overlay p {
@@ -204,7 +290,7 @@ body {
   display: flex;
   gap: 12px;
   justify-content: space-between;
-  min-width: 190px;
+  min-width: 160px;
 }
 
 .ranking .r-score {
@@ -214,40 +300,6 @@ body {
 .ranking li.r-new {
   color: var(--poke-yellow);
   animation: overlay-blink 1.2s steps(2) infinite;
-}
-
-/* ---------- Catch FX label over the board ---------- */
-.fx-label {
-  position: absolute;
-  top: 34%;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 12px;
-  color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-ink), -2px 2px 0 var(--poke-ink),
-               2px -2px 0 var(--poke-ink), -2px -2px 0 var(--poke-ink);
-  opacity: 0;
-  pointer-events: none;
-}
-
-.fx-label.fx--legendary {
-  font-size: 15px;
-  color: var(--poke-red);
-  text-shadow: 2px 2px 0 var(--poke-yellow), -2px 2px 0 var(--poke-yellow),
-               2px -2px 0 var(--poke-yellow), -2px -2px 0 var(--poke-yellow);
-}
-
-.fx-label.fx--run {
-  animation: fx-float 1s steps(8) forwards;
-}
-
-@keyframes fx-float {
-  0%   { opacity: 0; transform: translateY(12px) scale(0.7); }
-  15%  { opacity: 1; transform: translateY(0) scale(1.1); }
-  30%  { transform: translateY(-4px) scale(1); }
-  80%  { opacity: 1; }
-  100% { opacity: 0; transform: translateY(-26px) scale(1); }
 }
 
 /* ---------- Controls reference strip ---------- */
@@ -267,6 +319,7 @@ body {
   min-width: 22px;
   text-align: center;
   background: var(--poke-white);
+  color: var(--poke-ink);
   border: 2px solid var(--poke-ink);
   border-radius: 3px;
   padding: 2px 4px;
@@ -275,38 +328,8 @@ body {
   margin-right: 4px;
 }
 
-/* ---------- On-screen touch D-pad ---------- */
-.touch-controls {
-  display: none;
-  grid-template-columns: repeat(3, minmax(64px, 104px));
-  gap: 8px;
-  justify-content: center;
-  padding: 0 10px 14px;
-}
-
-.touch-controls button {
-  height: 48px;
-  font-family: var(--font-pixel);
-  font-size: 14px;
-  color: var(--poke-ink);
-  background: var(--poke-white);
-  border: var(--pixel-border);
-  box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
-  cursor: pointer;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.touch-controls button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 rgba(33, 33, 33, 0.9);
-  background: var(--poke-yellow);
-}
-
 /* ---------- Single-screen phone layout ---------- */
 @media (max-width: 720px), (hover: none) and (pointer: coarse) {
-  /* the game page must never scroll, rubber-band or pull-to-refresh */
   html, body {
     height: 100%;
     overflow: hidden;
@@ -314,11 +337,14 @@ body {
     touch-action: none;
   }
 
-  /* …unless unlocked with a two-finger tap */
   html.scroll-free,
   html.scroll-free body {
     overflow: auto;
     touch-action: pan-y;
+  }
+
+  .card {
+    touch-action: none;
   }
 
   .game-header {
@@ -326,10 +352,10 @@ body {
   }
 
   .game-header h1 {
-    font-size: 12px;
+    font-size: 11px;
   }
 
-  .snake-layout {
+  .memory-layout {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -342,12 +368,11 @@ body {
     display: contents;
   }
 
-  /* stats become a compact strip above the board */
   .side-panel .panel-box {
     order: -1;
     width: 160px;
     padding: 5px 6px 6px;
-    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55);
   }
 
   .panel-box h3 {
@@ -360,7 +385,7 @@ body {
 
   .side-panel .panel-box:first-child .stat-row {
     display: inline-block;
-    width: 48%;
+    width: 31%;
     margin-bottom: 2px;
   }
 
@@ -373,24 +398,35 @@ body {
     margin-top: 1px;
   }
 
-  .howto {
-    font-size: 6px;
-    line-height: 1.7;
+  .diff-list {
+    flex-direction: row;
+    gap: 4px;
   }
 
-  .board-wrap {
+  .diff-btn {
+    font-size: 6px;
+    padding: 6px 2px;
+    flex: 1;
+  }
+
+  .howto {
+    display: none;
+  }
+
+  .cards-wrap {
     order: 0;
     margin: 0 auto;
+    width: min(calc(100vw - 10px), calc(100vh - 220px));
+    width: min(calc(100vw - 10px), calc(100dvh - 220px));
+    padding: 8px;
   }
 
-  #board {
-    width: min(calc(100vw - 10px), calc(100vh - 330px));
-    width: min(calc(100vw - 10px), calc(100dvh - 330px));
-    height: auto;
+  .cards {
+    gap: 5px;
   }
 
   .overlay h2 {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .overlay p {
@@ -402,22 +438,10 @@ body {
   }
 
   .ranking li {
-    min-width: 130px;
-  }
-
-  .fx-label {
-    font-size: 10px;
-  }
-
-  .fx-label.fx--legendary {
-    font-size: 12px;
+    min-width: 120px;
   }
 
   .controls-strip {
     display: none;
-  }
-
-  .touch-controls {
-    display: grid;
   }
 }

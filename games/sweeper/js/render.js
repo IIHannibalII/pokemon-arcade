@@ -105,11 +105,16 @@
             if (c.mine) {
               drawAsteroid(px, py, cell, boom);
             } else if (c.n > 0) {
-              ctx.fillStyle = NUM_COLORS[c.n];
-              ctx.font = Math.floor(cell * 0.5) + 'px "Press Start 2P", monospace';
+              // smooth bold digits with a dark outline — easy on the eyes
+              ctx.font = '900 ' + Math.floor(cell * 0.56) + 'px Arial, sans-serif';
               ctx.textAlign = 'center';
               ctx.textBaseline = 'middle';
-              ctx.fillText(String(c.n), px + cell / 2, py + cell / 2 + 2);
+              ctx.lineJoin = 'round';
+              ctx.lineWidth = Math.max(2, cell * 0.12);
+              ctx.strokeStyle = 'rgba(0, 0, 0, 0.6)';
+              ctx.strokeText(String(c.n), px + cell / 2, py + cell / 2 + 1);
+              ctx.fillStyle = NUM_COLORS[c.n];
+              ctx.fillText(String(c.n), px + cell / 2, py + cell / 2 + 1);
             }
           }
         }

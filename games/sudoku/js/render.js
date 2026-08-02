@@ -55,15 +55,20 @@
 
           if (v) {
             const conflict = bad.has(x + ',' + y);
-            ctx.fillStyle = conflict ? '#ee1515'
-              : engine.given[y][x] ? cream : '#7fc7ff';
-            ctx.font = '20px "Press Start 2P", monospace';
+            // smooth bold digits with a soft outline
+            ctx.font = '900 26px Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
-            ctx.fillText(String(v), px + CELL / 2, py + CELL / 2 + 2);
+            ctx.lineJoin = 'round';
+            ctx.lineWidth = 4;
+            ctx.strokeStyle = 'rgba(0, 0, 0, 0.55)';
+            ctx.strokeText(String(v), px + CELL / 2, py + CELL / 2 + 1);
+            ctx.fillStyle = conflict ? '#ff5252'
+              : engine.given[y][x] ? cream : '#7fc7ff';
+            ctx.fillText(String(v), px + CELL / 2, py + CELL / 2 + 1);
           } else if (engine.notes[y][x].size) {
-            ctx.fillStyle = 'rgba(248, 240, 216, 0.55)';
-            ctx.font = '9px "Press Start 2P", monospace';
+            ctx.fillStyle = 'rgba(248, 240, 216, 0.6)';
+            ctx.font = '700 11px Arial, sans-serif';
             ctx.textAlign = 'center';
             ctx.textBaseline = 'middle';
             for (const n of engine.notes[y][x]) {

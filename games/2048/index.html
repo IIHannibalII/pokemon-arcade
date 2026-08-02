@@ -3,36 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AstroSnake</title>
+  <title>Astro2048</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='54' rx='46' ry='14' fill='none' stroke='%23ffcb05' stroke-width='7' transform='rotate(-18 50 54)'/%3E%3Ccircle cx='50' cy='50' r='28' fill='%23f08030' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M28 44 a28 28 0 0 1 44 -8' fill='none' stroke='%23ffcb05' stroke-width='8'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/theme.css?v=7">
-  <link rel="stylesheet" href="snake.css?v=7">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=2">
+  <link rel="stylesheet" href="g2048.css?v=2">
 </head>
 <body>
 
   <header class="game-header">
     <a class="back-link" href="../../index.html">← AstroArcade</a>
-    <h1>ASTROSNAKE</h1>
+    <h1>ASTRO2048</h1>
     <div class="header-right">
-      <button id="btn-sound" class="sound-btn js-sound-icon" title="Sound on/off (M)">🔊</button>
+      <button id="btn-pause" class="sound-btn" title="Pause (P)">⏸</button>
+      <button id="btn-sound" class="sound-btn" title="Sound on/off (M)">🔊</button>
       <div class="pokeball" style="--size:28px" aria-hidden="true"></div>
     </div>
   </header>
 
-  <main class="snake-layout">
+  <main class="g2048-layout">
 
     <!-- Playfield -->
     <div class="board-wrap">
-      <canvas id="board" width="408" height="408"></canvas>
+      <canvas id="board" width="396" height="396"></canvas>
       <div class="fx-label" id="fx"></div>
-      <div class="overlay" id="overlay">
-        <h2 id="overlay-title">ASTROSNAKE</h2>
-        <p id="overlay-text">Press ENTER or tap to start</p>
+      <div class="overlay" id="overlay" hidden>
+        <h2 id="overlay-title">ASTRO2048</h2>
+        <p id="overlay-text"></p>
         <div class="ranking-box" id="ranking-box" hidden>
-          <span class="ranking-title">★ TOP PILOTS ★</span>
+          <span class="ranking-title">★ TOP CORES ★</span>
           <ol class="ranking" id="ranking"></ol>
         </div>
       </div>
@@ -51,47 +52,43 @@
           <span class="stat-value" id="stat-best">0</span>
         </div>
         <div class="stat-row">
-          <span class="stat-label">LENGTH</span>
-          <span class="stat-value" id="stat-length">3</span>
+          <span class="stat-label">TOP TILE</span>
+          <span class="stat-value" id="stat-tile">2</span>
         </div>
         <div class="stat-row">
-          <span class="stat-label">LEVEL</span>
-          <span class="stat-value" id="stat-level">1</span>
+          <span class="stat-label">MOVES</span>
+          <span class="stat-value" id="stat-moves">0</span>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>GAME</h3>
+        <div class="diff-list">
+          <button type="button" class="diff-btn" id="btn-new">NEW GRID (R)</button>
         </div>
       </div>
       <div class="panel-box">
         <h3>HOW TO</h3>
         <p class="howto">
-          Gobble up stars to grow.<br>
-          Golden comets are worth +50 — but they fly away fast.
-          Don't hit the walls or yourself!
+          Slide the whole grid — equal energy cores merge and double.
+          Forge the legendary 2048 starcore! The grid jams when no
+          move is left.
         </p>
       </div>
     </aside>
 
   </main>
 
-  <!-- On-screen D-pad for touch devices -->
-  <div class="touch-controls" id="touch-controls">
-    <button type="button" data-act="pause" aria-label="Pause">| |</button>
-    <button type="button" data-act="up" aria-label="Up">▲</button>
-    <button type="button" data-act="sound" class="js-sound-icon" aria-label="Sound">🔊</button>
-    <button type="button" data-act="left" aria-label="Left">◀</button>
-    <button type="button" data-act="down" aria-label="Down">▼</button>
-    <button type="button" data-act="right" aria-label="Right">▶</button>
-  </div>
-
   <!-- Controls reference -->
   <footer class="controls-strip">
-    <span><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>WASD</kbd> Move</span>
+    <span><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd> / <kbd>WASD</kbd> / swipe — Slide</span>
     <span><kbd>P</kbd> Pause</span>
-    <span><kbd>R</kbd> Restart</span>
+    <span><kbd>R</kbd> New grid</span>
     <span><kbd>M</kbd> Sound</span>
   </footer>
 
-  <script src="js/engine.js?v=7"></script>
-  <script src="js/sound.js?v=7"></script>
-  <script src="js/render.js?v=7"></script>
-  <script src="js/main.js?v=7"></script>
+  <script src="js/engine.js?v=2"></script>
+  <script src="js/sound.js?v=2"></script>
+  <script src="js/render.js?v=2"></script>
+  <script src="js/main.js?v=2"></script>
 </body>
 </html>

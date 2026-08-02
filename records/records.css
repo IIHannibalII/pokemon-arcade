@@ -1,0 +1,99 @@
+/* ============================================================
+   AstroArcade — Hall of Fame page styles.
+   Builds on the shared theme (theme.css).
+   ============================================================ */
+
+.game-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 24px;
+  background: var(--space-panel);
+  border-bottom: 6px solid var(--poke-ink);
+}
+
+.game-header h1 {
+  margin: 0;
+  font-size: 16px;
+  color: var(--poke-yellow);
+  text-shadow: 2px 2px 0 var(--poke-red), -2px 2px 0 var(--poke-red),
+               2px -2px 0 var(--poke-red), -2px -2px 0 var(--poke-red);
+}
+
+.back-link {
+  font-size: 10px;
+  color: var(--poke-white);
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.records-note {
+  max-width: 940px;
+  margin: 22px auto 0;
+  padding: 0 24px;
+  font-size: 9px;
+  line-height: 1.9;
+  color: #8b93ad;
+  text-align: center;
+}
+
+.records-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  max-width: 940px;
+  margin: 24px auto 48px;
+  padding: 0 24px;
+}
+
+.record-box {
+  background: var(--poke-cream);
+  color: var(--poke-ink);
+  border: var(--pixel-border);
+  box-shadow: var(--pixel-shadow);
+  padding: 14px;
+}
+
+.record-box h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  border-bottom: 3px solid var(--poke-ink);
+  padding-bottom: 8px;
+}
+
+.record-box h2 a {
+  color: var(--poke-ink);
+  text-decoration: none;
+}
+
+.record-box h2 a:hover {
+  color: var(--poke-red);
+}
+
+.record-box ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 9px;
+  line-height: 2.2;
+}
+
+.record-box li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.record-box .r-score {
+  color: var(--poke-blue);
+}
+
+.record-box .empty {
+  margin: 6px 0 0;
+  font-size: 9px;
+  color: #8a8a7a;
+}

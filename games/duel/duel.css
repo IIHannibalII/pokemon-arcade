@@ -1,5 +1,5 @@
 /* ============================================================
-   PokéSnake — game page styles.
+   AstroDuel — game page styles.
    Builds on the shared theme (theme.css).
    ============================================================ */
 
@@ -7,7 +7,7 @@
    panels; strong overlay keeps the board the focus. */
 body {
   background-image:
-    linear-gradient(rgba(6, 10, 24, 0.68), rgba(6, 10, 24, 0.68)),
+    linear-gradient(rgba(6, 10, 24, 0.66), rgba(6, 10, 24, 0.66)),
     url('../../assets/img/snake-bg.png');
   background-size: cover;
   background-position: center;
@@ -62,7 +62,7 @@ body {
 }
 
 /* ---------- Layout: board | stats ---------- */
-.snake-layout {
+.duel-layout {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -148,7 +148,6 @@ body {
   background: rgba(6, 10, 24, 0.86);
   color: var(--poke-white);
   line-height: 1.6;
-  /* taps must fall through to the board canvas (tap to start) */
   pointer-events: none;
 }
 
@@ -158,9 +157,9 @@ body {
 
 .overlay h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
   color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-blue);
+  text-shadow: 2px 2px 0 var(--poke-red);
 }
 
 .overlay p {
@@ -216,7 +215,7 @@ body {
   animation: overlay-blink 1.2s steps(2) infinite;
 }
 
-/* ---------- Catch FX label over the board ---------- */
+/* ---------- FX label over the board ---------- */
 .fx-label {
   position: absolute;
   top: 34%;
@@ -267,41 +266,13 @@ body {
   min-width: 22px;
   text-align: center;
   background: var(--poke-white);
+  color: var(--poke-ink);
   border: 2px solid var(--poke-ink);
   border-radius: 3px;
   padding: 2px 4px;
   font-family: inherit;
   font-size: 8px;
   margin-right: 4px;
-}
-
-/* ---------- On-screen touch D-pad ---------- */
-.touch-controls {
-  display: none;
-  grid-template-columns: repeat(3, minmax(64px, 104px));
-  gap: 8px;
-  justify-content: center;
-  padding: 0 10px 14px;
-}
-
-.touch-controls button {
-  height: 48px;
-  font-family: var(--font-pixel);
-  font-size: 14px;
-  color: var(--poke-ink);
-  background: var(--poke-white);
-  border: var(--pixel-border);
-  box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
-  cursor: pointer;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.touch-controls button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 rgba(33, 33, 33, 0.9);
-  background: var(--poke-yellow);
 }
 
 /* ---------- Single-screen phone layout ---------- */
@@ -329,7 +300,7 @@ body {
     font-size: 12px;
   }
 
-  .snake-layout {
+  .duel-layout {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -342,12 +313,11 @@ body {
     display: contents;
   }
 
-  /* stats become a compact strip above the board */
   .side-panel .panel-box {
     order: -1;
     width: 160px;
     padding: 5px 6px 6px;
-    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55);
   }
 
   .panel-box h3 {
@@ -384,13 +354,13 @@ body {
   }
 
   #board {
-    width: min(calc(100vw - 10px), calc(100vh - 330px));
-    width: min(calc(100vw - 10px), calc(100dvh - 330px));
+    width: min(calc(100vw - 10px), calc((100vh - 240px) / 1.445));
+    width: min(calc(100vw - 10px), calc((100dvh - 240px) / 1.445));
     height: auto;
   }
 
   .overlay h2 {
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .overlay p {
@@ -415,9 +385,5 @@ body {
 
   .controls-strip {
     display: none;
-  }
-
-  .touch-controls {
-    display: grid;
   }
 }

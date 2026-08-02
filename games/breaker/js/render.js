@@ -111,7 +111,7 @@
       ctx.lineWidth = 2;
       ctx.strokeRect(cap.x - 9, cap.y - 7, 18, 14);
       ctx.fillStyle = ink;
-      ctx.font = '9px "Press Start 2P", monospace';
+      ctx.font = '900 12px Arial, sans-serif';
       ctx.textAlign = 'center';
       ctx.textBaseline = 'middle';
       ctx.fillText(st.label, cap.x, cap.y + 1);

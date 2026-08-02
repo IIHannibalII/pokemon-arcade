@@ -357,7 +357,6 @@ body {
     width: min(calc(100vw - 10px), calc((100vh - 240px) / 1.445));
     width: min(calc(100vw - 10px), calc((100dvh - 240px) / 1.445));
     height: auto;
-    image-rendering: pixelated;
   }
 
   .overlay h2 {

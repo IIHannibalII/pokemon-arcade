@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/theme.css?v=9">
-  <link rel="stylesheet" href="assets/css/hub.css?v=9">
+  <link rel="stylesheet" href="assets/css/theme.css?v=10">
+  <link rel="stylesheet" href="assets/css/hub.css?v=10">
 </head>
 <body>
 
@@ -23,12 +23,13 @@
     </div>
     <h1>ASTROARCADE</h1>
     <p>Classic games in deep space · Blast off!</p>
+    <a class="hall-link" href="records/index.html">🏆 HALL OF FAME</a>
   </header>
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker__inner">
-      🧠 NEW PUZZLE DECK: ASTROSWEEPER and ASTROSUDOKU! &nbsp;·&nbsp; 🧱 ASTROBREAKER — smash the space blocks! &nbsp;·&nbsp;
-      🚀 ASTROTETRIS is live! &nbsp;·&nbsp; 🐛 ASTROSNAKE — feed the star worm! &nbsp;·&nbsp; 🛸 High scores are saved in your Star Log
+      🛸 NEW: ASTRODUEL, ASTRO2048 and ASTROMEMORY! &nbsp;·&nbsp; 🏆 Check the HALL OF FAME! &nbsp;·&nbsp;
+      🚀 Eight games and counting &nbsp;·&nbsp; 🧱 Smash blocks, scan sectors, decode charts! &nbsp;·&nbsp; ⭐ High scores are saved in your Star Log
     </div>
   </div>
 
@@ -191,6 +192,53 @@
       </div>
     </article>
 
+    <!-- ======== Card: AstroDuel ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>AstroDuel</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="160" height="150" viewBox="0 0 160 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#212121" stroke-width="2">
+            <rect x="50" y="12" width="60" height="12" fill="#78c850"/>
+            <rect x="90" y="126" width="60" height="12" fill="#f4f6fb"/>
+            <rect x="90" y="126" width="8" height="12" fill="#ee1515"/>
+            <rect x="142" y="126" width="8" height="12" fill="#ee1515"/>
+          </g>
+          <path d="M74 12 a8 8 0 0 1 12 0" fill="#d7f4fa" stroke="#212121" stroke-width="2"/>
+          <g fill="rgba(248,240,216,0.25)">
+            <rect x="6" y="72" width="14" height="4"/>
+            <rect x="34" y="72" width="14" height="4"/>
+            <rect x="62" y="72" width="14" height="4"/>
+            <rect x="90" y="72" width="14" height="4"/>
+            <rect x="118" y="72" width="14" height="4"/>
+            <rect x="146" y="72" width="10" height="4"/>
+          </g>
+          <circle cx="66" cy="96" r="12" fill="rgba(255,203,5,0.3)"/>
+          <circle cx="66" cy="96" r="6" fill="#ffcb05"/>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--ufo">🛸 Versus</span>
+        <span class="type-badge type-badge--star">⭐ Classic</span>
+      </div>
+
+      <p class="game-card__desc">
+        A rival saucer challenges your ship to a duel. Deflect the orb
+        past it — first to 7 wins. It fights harder when it's losing!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/duel/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
   </div>
 
   <h2 class="deck-title">🧠 PUZZLE DECK</h2>
@@ -285,6 +333,87 @@
 
       <div class="game-card__actions">
         <a class="poke-btn" href="games/sudoku/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
+    <!-- ======== Card: Astro2048 ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>Astro2048</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="160" height="160" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#212121" stroke-width="2">
+            <rect x="12" y="12" width="64" height="64" rx="6" fill="#3b4668"/>
+            <rect x="84" y="12" width="64" height="64" rx="6" fill="#6890f0"/>
+            <rect x="12" y="84" width="64" height="64" rx="6" fill="#f8d030"/>
+            <rect x="84" y="84" width="64" height="64" rx="6" fill="#f08030"/>
+          </g>
+          <g font-family="Arial, sans-serif" font-weight="900" text-anchor="middle" fill="#ffffff" stroke="rgba(0,0,0,0.35)" stroke-width="1.5">
+            <text x="44" y="55" font-size="30" fill="#d7def5">2</text>
+            <text x="116" y="55" font-size="30">8</text>
+            <text x="44" y="127" font-size="26">64</text>
+            <text x="116" y="127" font-size="24">128</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--planet">▣ Merge</span>
+        <span class="type-badge type-badge--star">⭐ Zen</span>
+      </div>
+
+      <p class="game-card__desc">
+        Slide the grid — equal energy cores merge and double.
+        Forge the legendary 2048 starcore before the grid jams!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/2048/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
+    <!-- ======== Card: AstroMemory ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>AstroMemory</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="190" height="150" viewBox="0 0 190 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#212121" stroke-width="3">
+            <rect x="14" y="30" width="48" height="60" fill="#2b3358"/>
+            <rect x="71" y="30" width="48" height="60" fill="#f8f0d8"/>
+            <rect x="128" y="30" width="48" height="60" fill="#2b3358"/>
+          </g>
+          <text x="38" y="70" font-size="24" text-anchor="middle" fill="rgba(248,240,216,0.5)">✦</text>
+          <text x="95" y="70" font-size="28" text-anchor="middle">🚀</text>
+          <text x="152" y="70" font-size="24" text-anchor="middle" fill="rgba(248,240,216,0.5)">✦</text>
+          <text x="95" y="122" font-size="13" text-anchor="middle" fill="rgba(248,240,216,0.7)">?</text>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--plasma">🃏 Pairs</span>
+        <span class="type-badge type-badge--comet">🧠 Recall</span>
+      </div>
+
+      <p class="game-card__desc">
+        Flip two cards — matching space objects stay revealed.
+        Clear the whole deck fast. Three deck sizes to master!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/memory/index.html">
           <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
           Play!
         </a>

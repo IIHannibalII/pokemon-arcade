@@ -9,16 +9,20 @@ no build step — open `index.html` directly or serve it from any static host.
 
 ```
 astro-arcade/
-├── index.html            # Hub page: starship-console game showcase
+├── index.html            # Hub page: Arcade Deck + Puzzle Deck showcase
+├── records/              # Hall of Fame: every game's local leaderboards on one page
 ├── assets/
 │   └── css/
 │       ├── theme.css     # Shared theme (arcade-shell): tokens, buttons, badges, starfield
 │       └── hub.css       # Hub-page-only styles
 └── games/
+    ├── 2048/             # Astro2048 — slide and merge energy cores, forge the starcore
     ├── breaker/          # AstroBreaker — deflect the orb, smash block waves, catch capsules
     │   ├── index.html
     │   ├── breaker.css
     │   └── js/           # engine.js, sound.js, render.js, main.js
+    ├── duel/             # AstroDuel — vertical paddle duel against a rival saucer
+    ├── memory/           # AstroMemory — pairs of space objects, DOM cards with CSS flips
     ├── snake/            # AstroSnake — a star worm gobbles stars, comets are bonus
     │   ├── index.html
     │   ├── snake.css
@@ -60,6 +64,13 @@ astro-arcade/
     asteroid scanning with beacon mode and per-sector best times
 11. ✅ AstroSudoku: generated puzzles with a uniqueness guarantee, pencil
     notes, conflict highlighting, hints with a time penalty
+12. ✅ AstroDuel: vertical pong versus an adaptive saucer AI, first to 7,
+    best-match leaderboard
+13. ✅ Astro2048: sliding merge grid with slide/pop/pulse animation
+14. ✅ AstroMemory: pairs with CSS card flips, three deck sizes
+15. ✅ Hall of Fame page collecting every game's local leaderboards
+16. ✅ Board digits rendered as smooth bold outlined type (easier on the
+    eyes than pixel-font canvas text)
 
 ## Principles
 

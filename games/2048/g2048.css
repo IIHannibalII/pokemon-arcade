@@ -1,14 +1,14 @@
 /* ============================================================
-   PokéSnake — game page styles.
+   Astro2048 — game page styles.
    Builds on the shared theme (theme.css).
    ============================================================ */
 
-/* Locally generated pixel-art comet streaks (SDXL) behind the
-   panels; strong overlay keeps the board the focus. */
+/* Locally generated pixel-art alien night (SDXL) behind the
+   panels; calm backdrop for a thinking game. */
 body {
   background-image:
-    linear-gradient(rgba(6, 10, 24, 0.68), rgba(6, 10, 24, 0.68)),
-    url('../../assets/img/snake-bg.png');
+    linear-gradient(rgba(6, 10, 24, 0.55), rgba(6, 10, 24, 0.55)),
+    url('../../assets/img/tetris-bg.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -61,8 +61,12 @@ body {
   background: var(--poke-cream);
 }
 
-/* ---------- Layout: board | stats ---------- */
-.snake-layout {
+.sound-btn.diff-active {
+  background: var(--poke-yellow);
+}
+
+/* ---------- Layout: board | controls ---------- */
+.g2048-layout {
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -122,6 +126,32 @@ body {
   line-height: 1.9;
 }
 
+/* Difficulty buttons */
+.diff-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.diff-btn {
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  padding: 9px 8px;
+  color: var(--poke-ink);
+  background: var(--poke-white);
+  border: 3px solid var(--poke-ink);
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+.diff-btn:hover {
+  background: var(--poke-cream);
+}
+
+.diff-btn.diff-active {
+  background: var(--poke-yellow);
+}
+
 /* ---------- Playfield ---------- */
 .board-wrap {
   position: relative;
@@ -135,7 +165,7 @@ body {
   background: var(--poke-screen);
 }
 
-/* Overlay: start / pause / game over */
+/* Overlay: pause / win / lose */
 .overlay {
   position: absolute;
   inset: 0;
@@ -148,7 +178,6 @@ body {
   background: rgba(6, 10, 24, 0.86);
   color: var(--poke-white);
   line-height: 1.6;
-  /* taps must fall through to the board canvas (tap to start) */
   pointer-events: none;
 }
 
@@ -158,9 +187,9 @@ body {
 
 .overlay h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
   color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-blue);
+  text-shadow: 2px 2px 0 var(--poke-red);
 }
 
 .overlay p {
@@ -204,7 +233,7 @@ body {
   display: flex;
   gap: 12px;
   justify-content: space-between;
-  min-width: 190px;
+  min-width: 150px;
 }
 
 .ranking .r-score {
@@ -216,7 +245,7 @@ body {
   animation: overlay-blink 1.2s steps(2) infinite;
 }
 
-/* ---------- Catch FX label over the board ---------- */
+/* ---------- FX label over the board ---------- */
 .fx-label {
   position: absolute;
   top: 34%;
@@ -267,6 +296,7 @@ body {
   min-width: 22px;
   text-align: center;
   background: var(--poke-white);
+  color: var(--poke-ink);
   border: 2px solid var(--poke-ink);
   border-radius: 3px;
   padding: 2px 4px;
@@ -275,38 +305,8 @@ body {
   margin-right: 4px;
 }
 
-/* ---------- On-screen touch D-pad ---------- */
-.touch-controls {
-  display: none;
-  grid-template-columns: repeat(3, minmax(64px, 104px));
-  gap: 8px;
-  justify-content: center;
-  padding: 0 10px 14px;
-}
-
-.touch-controls button {
-  height: 48px;
-  font-family: var(--font-pixel);
-  font-size: 14px;
-  color: var(--poke-ink);
-  background: var(--poke-white);
-  border: var(--pixel-border);
-  box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
-  cursor: pointer;
-  touch-action: none;
-  user-select: none;
-  -webkit-user-select: none;
-}
-
-.touch-controls button:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 rgba(33, 33, 33, 0.9);
-  background: var(--poke-yellow);
-}
-
 /* ---------- Single-screen phone layout ---------- */
 @media (max-width: 720px), (hover: none) and (pointer: coarse) {
-  /* the game page must never scroll, rubber-band or pull-to-refresh */
   html, body {
     height: 100%;
     overflow: hidden;
@@ -314,7 +314,6 @@ body {
     touch-action: none;
   }
 
-  /* …unless unlocked with a two-finger tap */
   html.scroll-free,
   html.scroll-free body {
     overflow: auto;
@@ -326,10 +325,10 @@ body {
   }
 
   .game-header h1 {
-    font-size: 12px;
+    font-size: 11px;
   }
 
-  .snake-layout {
+  .g2048-layout {
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
@@ -342,12 +341,11 @@ body {
     display: contents;
   }
 
-  /* stats become a compact strip above the board */
   .side-panel .panel-box {
     order: -1;
     width: 160px;
     padding: 5px 6px 6px;
-    box-shadow: 3px 3px 0 rgba(33, 33, 33, 0.9);
+    box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.55);
   }
 
   .panel-box h3 {
@@ -360,7 +358,7 @@ body {
 
   .side-panel .panel-box:first-child .stat-row {
     display: inline-block;
-    width: 48%;
+    width: 31%;
     margin-bottom: 2px;
   }
 
@@ -373,9 +371,19 @@ body {
     margin-top: 1px;
   }
 
-  .howto {
+  .diff-list {
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .diff-btn {
     font-size: 6px;
-    line-height: 1.7;
+    padding: 6px 4px;
+    flex: 1;
+  }
+
+  .howto {
+    display: none;
   }
 
   .board-wrap {
@@ -384,13 +392,13 @@ body {
   }
 
   #board {
-    width: min(calc(100vw - 10px), calc(100vh - 330px));
-    width: min(calc(100vw - 10px), calc(100dvh - 330px));
+    width: min(calc(100vw - 10px), calc(100vh - 220px));
+    width: min(calc(100vw - 10px), calc(100dvh - 220px));
     height: auto;
   }
 
   .overlay h2 {
-    font-size: 13px;
+    font-size: 11px;
   }
 
   .overlay p {
@@ -402,22 +410,10 @@ body {
   }
 
   .ranking li {
-    min-width: 130px;
-  }
-
-  .fx-label {
-    font-size: 10px;
-  }
-
-  .fx-label.fx--legendary {
-    font-size: 12px;
+    min-width: 110px;
   }
 
   .controls-strip {
     display: none;
-  }
-
-  .touch-controls {
-    display: grid;
   }
 }
