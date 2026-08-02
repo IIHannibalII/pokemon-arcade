@@ -454,6 +454,13 @@ body {
     touch-action: none;
   }
 
+  /* …unless unlocked with a two-finger tap */
+  html.scroll-free,
+  html.scroll-free body {
+    overflow: auto;
+    touch-action: pan-y;
+  }
+
   .game-header {
     padding: 8px 14px;
   }
@@ -544,8 +551,8 @@ body {
   }
 
   #board {
-    height: min(calc(100vh - 175px), calc((100vw - 12px) * 2));
-    height: min(calc(100dvh - 175px), calc((100vw - 12px) * 2));
+    height: min(calc(100vh - 210px), calc((100vw - 12px) * 2));
+    height: min(calc(100dvh - 210px), calc((100vw - 12px) * 2));
     width: auto;
     image-rendering: pixelated;
   }

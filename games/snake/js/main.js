@@ -147,7 +147,8 @@
         return;
       }
       o.hidden = false;
-      const state = engine.status + ':' + engine.score;
+      const state = engine.status + ':' + engine.score +
+        (typeof scrollFree !== 'undefined' && scrollFree ? ':s' : '');
       if (state === lastOverlayState) return;
       lastOverlayState = state;
 
@@ -157,7 +158,11 @@
         renderRanking();
       } else if (engine.status === 'paused') {
         els.overlayTitle.textContent = 'PAUSED';
-        els.overlayText.textContent = 'Press P to resume';
+        els.overlayText.textContent = coarse
+          ? (scrollFree
+              ? 'Scrolling ON · two-finger tap to lock'
+              : 'Tap | | to resume · two-finger tap to scroll')
+          : 'Press P to resume';
         els.rankingBox.hidden = true;
       } else if (engine.status === 'over') {
         els.overlayTitle.textContent = 'GAME OVER';
@@ -287,6 +292,38 @@
         Sound.setPaused(true);
       }
     });
+
+    /* A two-finger tap toggles page scrolling on phones. Unlocking
+       mid-game pauses the game first; once the game is resumed, the
+       next touch locks scrolling again. */
+    let scrollFree = false;
+    const activePointers = new Set();
+
+    function setScrollFree(on) {
+      scrollFree = on;
+      document.documentElement.classList.toggle('scroll-free', on);
+      surface.style.touchAction = on ? 'pan-y' : 'none';
+    }
+
+    document.addEventListener('pointerdown', (e) => {
+      activePointers.add(e.pointerId);
+      if (activePointers.size === 1 && scrollFree && engine.status === 'playing') {
+        setScrollFree(false); // game resumed — lock the page again
+        return;
+      }
+      if (activePointers.size === 2) {
+        gesture.active = false; // don't let finger #1 steer the snake
+        if (!scrollFree && engine.status === 'playing') {
+          engine.togglePause();
+          Sound.setPaused(true);
+        }
+        setScrollFree(!scrollFree);
+      }
+    });
+
+    const releasePointer = (e) => activePointers.delete(e.pointerId);
+    document.addEventListener('pointerup', releasePointer);
+    document.addEventListener('pointercancel', releasePointer);
 
     /* ---------- HUD + main loop ---------- */
 
