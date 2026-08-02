@@ -218,6 +218,13 @@
       e.preventDefault();
       Sound.unlock();
       if (press.timer) clearTimeout(press.timer);
+      if (e.button === 2) {
+        // right mouse button places a beacon immediately
+        const [cx, cy] = cellFromEvent(e);
+        engine.toggleFlag(cx, cy);
+        press.active = false;
+        return;
+      }
       press.active = true;
       press.id = e.pointerId;
       press.x = e.clientX;
@@ -249,8 +256,7 @@
       const moved = Math.abs(e.clientX - press.x) + Math.abs(e.clientY - press.y);
       if (moved > 12) return;
       const [cx, cy] = cellFromEvent(e);
-      const flag = flagMode || e.button === 2;
-      actOn(cx, cy, flag);
+      actOn(cx, cy, flagMode);
     });
 
     els.board.addEventListener('pointercancel', () => {
@@ -258,11 +264,8 @@
       clearTimeout(press.timer);
     });
 
-    els.board.addEventListener('contextmenu', (e) => {
-      e.preventDefault();
-      const [cx, cy] = cellFromEvent(e);
-      engine.toggleFlag(cx, cy);
-    });
+    // flagging is handled on pointerdown; just suppress the menu
+    els.board.addEventListener('contextmenu', (e) => e.preventDefault());
 
     /* ---------- Buttons + keyboard ---------- */
 
