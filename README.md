@@ -40,7 +40,8 @@ astro-arcade/
 5. ✅ Snake (catch collectibles, timed bonus, leaderboard, touch controls)
 6. ✅ Published on GitHub Pages
 7. ✅ Full re-theme to an original space setting (was Pokémon-styled)
-8. ⬜ Optional: AI-generated nebula backgrounds + sprite art (local ComfyUI + SDXL)
+8. ✅ AI-generated pixel-art backgrounds (local ComfyUI + SDXL): nebula hub,
+   alien night for Tetris, comet streaks for Snake
 
 ## Principles
 
