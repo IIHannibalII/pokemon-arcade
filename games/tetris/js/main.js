@@ -37,6 +37,8 @@
       soundBtn: document.getElementById('btn-sound'),
       boardWrap: document.querySelector('.board-wrap'),
       touchControls: document.getElementById('touch-controls'),
+      holdBox: document.getElementById('hold-box'),
+      partnerBox: document.getElementById('partner-box'),
     };
 
     const Sound = NS.Sound;
@@ -173,7 +175,9 @@
         renderRanking();
       } else if (engine.status === 'paused') {
         els.overlayTitle.textContent = 'PAUSED';
-        els.overlayText.textContent = 'Press P to resume';
+        els.overlayText.textContent = coarse
+          ? 'Tap your partner to resume'
+          : 'Press P to resume';
         els.rankingBox.hidden = true;
       } else if (engine.status === 'over') {
         els.overlayTitle.textContent = 'GAME OVER';
@@ -305,6 +309,21 @@
     els.soundBtn.addEventListener('click', () => {
       Sound.unlock();
       toggleSound();
+    });
+
+    /* Tappable top boxes: HOLD swaps the piece, PARTNER pauses. */
+    els.holdBox.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      Sound.unlock();
+      if (engine.status === 'ready' || engine.status === 'over') startGame();
+      else engine.holdPiece();
+    });
+
+    els.partnerBox.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      Sound.unlock();
+      if (engine.status === 'ready' || engine.status === 'over') startGame();
+      else togglePause();
     });
 
     /* ---------- On-screen touch buttons ---------- */

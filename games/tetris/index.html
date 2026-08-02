@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/theme.css?v=12">
-  <link rel="stylesheet" href="tetris.css?v=12">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=13">
+  <link rel="stylesheet" href="tetris.css?v=13">
 </head>
 <body>
 
@@ -24,14 +24,14 @@
 
   <main class="tetris-layout">
 
-    <!-- Left panel: hold + partner mascot -->
+    <!-- Left panel: hold + partner mascot (both boxes are tappable) -->
     <aside class="side-panel">
-      <div class="panel-box">
-        <h3>HOLD</h3>
+      <div class="panel-box panel-box--tap" id="hold-box" title="Tap to hold / swap the piece (C)">
+        <h3>HOLD <span class="tap-hint">⇆</span></h3>
         <canvas id="hold" width="120" height="90"></canvas>
       </div>
-      <div class="panel-box">
-        <h3>PARTNER</h3>
+      <div class="panel-box panel-box--tap" id="partner-box" title="Tap to pause (P)">
+        <h3>PARTNER <span class="tap-hint">⏸</span></h3>
         <canvas id="mascot" width="128" height="128"></canvas>
         <span class="mascot-name" id="mascot-name">PEEP · Lv.1</span>
         <div class="evo-msg" id="evo-msg"></div>
@@ -109,10 +109,10 @@
     <span><kbd>M</kbd> Sound</span>
   </footer>
 
-  <script src="js/engine.js?v=12"></script>
-  <script src="js/sound.js?v=12"></script>
-  <script src="js/mascot.js?v=12"></script>
-  <script src="js/render.js?v=12"></script>
-  <script src="js/main.js?v=12"></script>
+  <script src="js/engine.js?v=13"></script>
+  <script src="js/sound.js?v=13"></script>
+  <script src="js/mascot.js?v=13"></script>
+  <script src="js/render.js?v=13"></script>
+  <script src="js/main.js?v=13"></script>
 </body>
 </html>

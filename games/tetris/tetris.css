@@ -98,6 +98,23 @@ body {
   border: 3px solid var(--poke-ink);
 }
 
+/* Tappable boxes: HOLD swaps the piece, PARTNER pauses */
+.panel-box--tap {
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.panel-box--tap:active {
+  transform: translate(2px, 2px);
+  box-shadow: 4px 4px 0 rgba(33, 33, 33, 0.9);
+}
+
+.tap-hint {
+  color: var(--poke-blue);
+}
+
 .stat-value {
   display: block;
   font-size: 15px;
@@ -520,9 +537,15 @@ body {
     margin: 0 auto;
   }
 
+  /* no bottom buttons on phones — gestures and the tappable top
+     boxes cover everything, the board gets all remaining space */
+  .touch-controls {
+    display: none;
+  }
+
   #board {
-    height: min(calc(100vh - 300px), 560px);
-    height: min(calc(100dvh - 300px), 560px);
+    height: min(calc(100vh - 175px), calc((100vw - 12px) * 2));
+    height: min(calc(100dvh - 175px), calc((100vw - 12px) * 2));
     width: auto;
     image-rendering: pixelated;
   }
