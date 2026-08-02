@@ -12,10 +12,10 @@
 
   const { COLS, VISIBLE_ROWS, HIDDEN_ROWS } = NS.CONST;
 
-  /* Pokémon type icons drawn on the blocks. */
+  /* Cosmic element icons drawn on the blocks. */
   const TYPE_ICONS = {
-    ice: '❄', water: '💧', fire: '🔥', electric: '⚡',
-    grass: '🍃', dragon: '🐉', psychic: '🔮',
+    comet: '☄', planet: '🪐', rocket: '🚀', star: '⭐',
+    ufo: '🛸', moon: '🌙', plasma: '✨',
   };
 
   function cssVar(name) {
@@ -85,8 +85,8 @@
       boardCtx.fillStyle = screenBg;
       boardCtx.fillRect(0, 0, w, h);
 
-      // faint Game Boy-style grid
-      boardCtx.strokeStyle = 'rgba(15, 56, 15, 0.15)';
+      // faint space-grid
+      boardCtx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
       boardCtx.lineWidth = 1;
       for (let x = 1; x < COLS; x++) {
         boardCtx.beginPath();

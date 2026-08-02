@@ -111,10 +111,10 @@
       onLinesCleared(count) {
         Sound.sfx.clear(count);
         if (count >= 4) {
-          showFX('LEGENDARY CATCH!', true);
+          showFX('SUPERNOVA!', true);
           shakeBoard();
         } else {
-          showFX('GOTCHA! ×' + count);
+          showFX('ORBIT CLEARED! ×' + count);
         }
       },
       onLock(cleared) {
@@ -125,7 +125,7 @@
         if (to !== mascotStage) {
           Sound.sfx.levelUp();
           evolveAnim = { from: mascotStage, to, t: 0 };
-          els.evoMsg.textContent = 'What? ' + Mascot.STAGES[mascotStage].name + ' is evolving!';
+          els.evoMsg.textContent = Mascot.STAGES[mascotStage].name + ' is upgrading!';
         } else {
           Sound.sfx.levelUp();
           showFX('LEVEL ' + level + '!');
@@ -171,7 +171,7 @@
       lastOverlayState = state;
 
       if (engine.status === 'ready') {
-        els.overlayTitle.textContent = 'POKéTETRIS';
+        els.overlayTitle.textContent = 'ASTROTETRIS';
         els.overlayText.textContent = 'Press ENTER or tap to start';
         renderRanking();
       } else if (engine.status === 'paused') {
@@ -185,7 +185,7 @@
       } else if (engine.status === 'over') {
         els.overlayTitle.textContent = 'GAME OVER';
         els.overlayText.textContent =
-          Mascot.STAGES[mascotStage].name + ' fainted! · Score ' +
+          Mascot.STAGES[mascotStage].name + ' crashed! · Score ' +
           engine.score + ' · ENTER to retry';
         renderRanking();
       }
@@ -512,7 +512,7 @@
         if (evolveAnim.t >= EVOLVE_FLASH_MS) {
           mascotStage = evolveAnim.to;
           els.evoMsg.textContent =
-            Mascot.STAGES[evolveAnim.from].name + ' evolved into ' +
+            Mascot.STAGES[evolveAnim.from].name + ' upgraded into ' +
             Mascot.STAGES[evolveAnim.to].name + '!';
           evolveAnim = null;
         }

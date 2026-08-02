@@ -1,27 +1,92 @@
 'use strict';
 
 /* ============================================================
-   PokéTetris — partner mascot.
-   Sprite-based partner: Pikachu evolving into Raichu (Lv.5)
-   and Alolan Raichu (Lv.10). Sprites are fan-art pixel images
-   generated locally (ComfyUI + SDXL), stored in
-   assets/img/partner/.
+   AstroTetris — partner rocket.
+   An original ship drawn as 16x16 pixel art in code. It gets
+   upgraded as the level grows:
+   SCOUT (Lv.1) → SHUTTLE (Lv.5) → STARSHIP (Lv.10).
    ============================================================ */
 
 (function (NS) {
 
-  const SPRITE_BASE = '../../assets/img/partner/';
+  const PALETTE = {
+    D: '#212121', // outline
+    W: '#f4f6fb', // hull white
+    R: '#ee1515', // nose & fins
+    C: '#7fc7ff', // window glass
+    G: '#9aa3b2', // gray details
+    O: '#f08030', // flame outer
+    Y: '#ffcb05', // flame inner
+  };
 
   const STAGES = [
-    { name: 'PIKACHU', minLevel: 1, file: 'pikachu.png' },
-    { name: 'RAICHU', minLevel: 5, file: 'raichu.png' },
-    { name: 'ALOLAN RAICHU', minLevel: 10, file: 'raichu-alola.png' },
+    {
+      name: 'SCOUT',
+      minLevel: 1,
+      sprite: [
+        '................',
+        '.......DD.......',
+        '......DRRD......',
+        '......DRRD......',
+        '.....DRRRRD.....',
+        '.....DWWWWD.....',
+        '....DWWCCWWD....',
+        '....DWWCCWWD....',
+        '....DWWWWWWD....',
+        '....DWWWWWWD....',
+        '...DRDWWWWDRD...',
+        '..DRRDWWWWDRRD..',
+        '..DRRDDDDDDRRD..',
+        '....DOYYYOD.....',
+        '.....OYYO.......',
+        '......YY........',
+      ],
+    },
+    {
+      name: 'SHUTTLE',
+      minLevel: 5,
+      sprite: [
+        '................',
+        '.......DD.......',
+        '......DWWD......',
+        '.....DWWWWD.....',
+        '.....DWCCWD.....',
+        '.....DWCCWD.....',
+        '..DD.DWWWWD.DD..',
+        '.DRRDDWWWWDDRRD.',
+        '.DRRDWWWWWWDRRD.',
+        '.DRRDWWWWWWDRRD.',
+        '.DRRDWWWWWWDRRD.',
+        '.DRRDDWWWWDDRRD.',
+        '.DDDDDDDDDDDDDD.',
+        '..OY.DOYYOD.YO..',
+        '..YY..OYYO..YY..',
+        '.......YY.......',
+      ],
+    },
+    {
+      name: 'STARSHIP',
+      minLevel: 10,
+      sprite: [
+        '.......DD.......',
+        '......DRRD......',
+        '......DRRD......',
+        '.....DWWWWD.....',
+        '.....DWCCWD.....',
+        '.....DWCCWD.....',
+        '.....DWWWWD.....',
+        '....DWGGGGWD....',
+        '....DWGCCGWD....',
+        '....DWGCCGWD....',
+        '...DWWGGGGWWD...',
+        '..DRWWWWWWWWRD..',
+        '.DRRDWWWWWWDRRD.',
+        'DRRD.DOYYOD.DRRD',
+        'DDD..OYYYYO..DDD',
+        '......YYYY......',
+      ],
+    },
   ];
-
-  for (const stage of STAGES) {
-    stage.img = new Image();
-    stage.img.src = SPRITE_BASE + stage.file;
-  }
 
   function stageForLevel(level) {
     let idx = 0;
@@ -31,44 +96,23 @@
     return idx;
   }
 
-  let silCanvas = null; // offscreen buffer for the evolution flash
-
   /**
    * Draw a stage onto a canvas 2d context, scaled to fit.
-   * opts.silhouette paints the whole sprite white — used for
-   * the evolution flash.
+   * opts.silhouette paints every pixel white — used for the
+   * upgrade flash.
    */
   function draw(canvasCtx, stageIdx, opts) {
     const canvas = canvasCtx.canvas;
+    const sprite = STAGES[stageIdx].sprite;
+    const scale = Math.floor(canvas.width / 16);
     canvasCtx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const img = STAGES[stageIdx].img;
-    if (!img.complete || !img.naturalWidth) return; // still loading
-
-    const scale = Math.min(canvas.width / img.naturalWidth,
-                           canvas.height / img.naturalHeight);
-    const dw = img.naturalWidth * scale;
-    const dh = img.naturalHeight * scale;
-    const dx = (canvas.width - dw) / 2;
-    const dy = (canvas.height - dh) / 2;
-
-    canvasCtx.imageSmoothingEnabled = false;
-
-    if (opts && opts.silhouette) {
-      if (!silCanvas) silCanvas = document.createElement('canvas');
-      silCanvas.width = canvas.width;
-      silCanvas.height = canvas.height;
-      const sctx = silCanvas.getContext('2d');
-      sctx.imageSmoothingEnabled = false;
-      sctx.clearRect(0, 0, silCanvas.width, silCanvas.height);
-      sctx.drawImage(img, dx, dy, dw, dh);
-      sctx.globalCompositeOperation = 'source-in';
-      sctx.fillStyle = '#ffffff';
-      sctx.fillRect(0, 0, silCanvas.width, silCanvas.height);
-      sctx.globalCompositeOperation = 'source-over';
-      canvasCtx.drawImage(silCanvas, 0, 0);
-    } else {
-      canvasCtx.drawImage(img, dx, dy, dw, dh);
+    for (let y = 0; y < sprite.length; y++) {
+      for (let x = 0; x < sprite[y].length; x++) {
+        const ch = sprite[y][x];
+        if (ch === '.') continue;
+        canvasCtx.fillStyle = (opts && opts.silhouette) ? '#ffffff' : PALETTE[ch];
+        canvasCtx.fillRect(x * scale, y * scale, scale, scale);
+      }
     }
   }
 

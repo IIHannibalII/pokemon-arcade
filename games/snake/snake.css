@@ -9,7 +9,7 @@
   justify-content: space-between;
   gap: 16px;
   padding: 14px 24px;
-  background: var(--poke-red);
+  background: var(--space-panel);
   border-bottom: 6px solid var(--poke-ink);
 }
 
@@ -17,8 +17,8 @@
   margin: 0;
   font-size: 18px;
   color: var(--poke-yellow);
-  text-shadow: 2px 2px 0 var(--poke-blue), -2px 2px 0 var(--poke-blue),
-               2px -2px 0 var(--poke-blue), -2px -2px 0 var(--poke-blue);
+  text-shadow: 2px 2px 0 var(--poke-red), -2px 2px 0 var(--poke-red),
+               2px -2px 0 var(--poke-red), -2px -2px 0 var(--poke-red);
 }
 
 .back-link {
@@ -67,7 +67,8 @@
 }
 
 .panel-box {
-  background: var(--poke-white);
+  background: var(--poke-cream);
+  color: var(--poke-ink);
   border: var(--pixel-border);
   box-shadow: var(--pixel-shadow);
   padding: 12px;
@@ -133,7 +134,7 @@
   justify-content: center;
   gap: 16px;
   text-align: center;
-  background: rgba(15, 56, 15, 0.82);
+  background: rgba(6, 10, 24, 0.86);
   color: var(--poke-white);
   line-height: 1.6;
   /* taps must fall through to the board canvas (tap to start) */
@@ -246,7 +247,8 @@
   gap: 10px 20px;
   padding: 0 16px 30px;
   font-size: 8px;
-  color: var(--poke-ink);
+  color: var(--poke-cream);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
 .controls-strip kbd {

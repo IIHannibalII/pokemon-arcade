@@ -23,17 +23,17 @@ window.PokeTetris = window.PokeTetris || {};
   // Line-clear base scores (guideline): 1/2/3/4 lines.
   const LINE_SCORES = [0, 100, 300, 500, 800];
 
-  /* Piece definitions. Each piece is mapped to a Pokémon type —
+  /* Piece definitions. Each piece is mapped to a cosmic element —
      the colors come from the shared theme (see --type-* tokens). */
   const PIECES = [
     null, // board cells use 0 for "empty", so piece ids start at 1
-    { key: 'I', type: 'ice',      matrix: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]] },
-    { key: 'J', type: 'water',    matrix: [[1,0,0],[1,1,1],[0,0,0]] },
-    { key: 'L', type: 'fire',     matrix: [[0,0,1],[1,1,1],[0,0,0]] },
-    { key: 'O', type: 'electric', matrix: [[1,1],[1,1]] },
-    { key: 'S', type: 'grass',    matrix: [[0,1,1],[1,1,0],[0,0,0]] },
-    { key: 'T', type: 'dragon',   matrix: [[0,1,0],[1,1,1],[0,0,0]] },
-    { key: 'Z', type: 'psychic',  matrix: [[1,1,0],[0,1,1],[0,0,0]] },
+    { key: 'I', type: 'comet',  matrix: [[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]] },
+    { key: 'J', type: 'planet', matrix: [[1,0,0],[1,1,1],[0,0,0]] },
+    { key: 'L', type: 'rocket', matrix: [[0,0,1],[1,1,1],[0,0,0]] },
+    { key: 'O', type: 'star',   matrix: [[1,1],[1,1]] },
+    { key: 'S', type: 'ufo',    matrix: [[0,1,1],[1,1,0],[0,0,0]] },
+    { key: 'T', type: 'moon',   matrix: [[0,1,0],[1,1,1],[0,0,0]] },
+    { key: 'Z', type: 'plasma', matrix: [[1,1,0],[0,1,1],[0,0,0]] },
   ];
 
   /* SRS wall kicks, written in the guideline's y-up convention.

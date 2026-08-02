@@ -1,62 +1,53 @@
-# PokéArcade
+# AstroArcade
 
-A classic-games website in Pokémon style. Pure HTML/CSS/JS, no build step —
-open `index.html` directly or serve it from any static host.
+A retro-pixel arcade of classic games set in deep space. Pure HTML/CSS/JS,
+no build step — open `index.html` directly or serve it from any static host.
 
-**Play it live:** https://iihannibalii.github.io/pokemon-arcade/
+**Play it live:** https://iihannibalii.github.io/astro-arcade/
 
 ## Structure
 
 ```
-pokemon-arcade/
-├── index.html            # Hub page: Pokédex-style game showcase
+astro-arcade/
+├── index.html            # Hub page: starship-console game showcase
 ├── assets/
-│   ├── css/
-│   │   ├── theme.css     # Shared theme (arcade-shell): tokens, buttons, badges, Poké Ball
-│   │   └── hub.css       # Hub-page-only styles
-│   └── img/
-│       ├── hub-bg.png    # Pixel-art meadow, generated locally (ComfyUI + SDXL)
-│       └── tetris-bg.png # Pixel-art night meadow, generated locally
+│   └── css/
+│       ├── theme.css     # Shared theme (arcade-shell): tokens, buttons, badges, starfield
+│       └── hub.css       # Hub-page-only styles
 └── games/
-    ├── snake/
-    │   ├── index.html    # PokéSnake game page
-    │   ├── snake.css     # Game-page styles
-    │   └── js/
-    │       ├── engine.js # Pure game logic: movement, growth, bonus balls, levels
-    │       ├── sound.js  # WebAudio synth: SFX + its own original chiptune loop
-    │       ├── render.js # Canvas renderer: connected snake body, Poké Ball food
-    │       └── main.js   # Input (keys / swipes / D-pad), loop, HUD, leaderboard
-    └── tetris/
-        ├── index.html    # PokéTetris game page
-        ├── tetris.css    # Game-page styles
+    ├── snake/            # AstroSnake — a star worm gobbles stars, comets are bonus
+    │   ├── index.html
+    │   ├── snake.css
+    │   └── js/           # engine.js, sound.js, render.js, main.js
+    └── tetris/           # AstroTetris — cosmic blocks, rocket partner, SRS rules
+        ├── index.html
+        ├── tetris.css
         └── js/
             ├── engine.js # Pure game logic: SRS, 7-bag, gravity, lock delay, scoring
-            ├── render.js # Canvas renderer (board, ghost, next, hold, type icons)
+            ├── render.js # Canvas renderer (board, ghost, next, hold, element icons)
             ├── sound.js  # WebAudio synth: 8-bit SFX + original chiptune loop
-            ├── mascot.js # Partner sprites: Pikachu → Raichu (Lv.5) → Alolan Raichu (Lv.10)
-            └── main.js   # Input (DAS), game loop, HUD, FX, overlays
+            ├── mascot.js # Partner rocket: SCOUT → SHUTTLE (Lv.5) → STARSHIP (Lv.10)
+            └── main.js   # Input (keys / swipes / taps), game loop, HUD, leaderboard
 ```
 
-## Roadmap
+## History
 
-1. ✅ Site skeleton + Pokémon-style hub
+1. ✅ Site skeleton + hub
 2. ✅ Tetris engine (canvas, SRS rotation, scoring, levels)
-3. ✅ Pokémon-themed Tetris (type-based pieces, evolutions, WebAudio sound)
+3. ✅ Themed Tetris (element pieces, partner upgrades, WebAudio sound)
 4. ✅ Polish: top-5 leaderboard, touch controls + swipe gestures, responsive layout,
    auto-pause on focus loss, board shake on a tetris, favicon
-5. ✅ Background art generated with local AI (ComfyUI + SDXL, pixel-art style)
-6. ✅ PokéSnake (catch Poké Balls, bonus Great Balls, leaderboard, touch controls)
-7. ✅ Published on GitHub Pages
-8. ⬜ Future: full re-theme to a space setting (drops the Pokémon IP)
+5. ✅ Snake (catch collectibles, timed bonus, leaderboard, touch controls)
+6. ✅ Published on GitHub Pages
+7. ✅ Full re-theme to an original space setting (was Pokémon-styled)
+8. ⬜ Optional: AI-generated nebula backgrounds + sprite art (local ComfyUI + SDXL)
 
 ## Principles
 
 - Retro pixel style is the project's look (Press Start 2P, hard pixel borders,
-  Game Boy-green playfield). A modern soft redesign was tried and rejected —
-  do not restyle without asking.
-- No ripped official assets or music. UI art is drawn in code (CSS/SVG/canvas);
-  backgrounds and the partner sprites (Pikachu line fan-art) are generated locally
-  with ComfyUI + SDXL. Note: the partner depicts official Pokémon characters —
-  fine for personal use, reconsider before public hosting.
-- Shared styles and utilities live in `assets/` (arcade-shell); each game is a
-  standalone module under `games/<name>/`.
+  deep-space playfields, cream console panels) — do not restyle without asking.
+- Fully original theme: every sprite, sound and background is made in code.
+  No third-party IP, no external assets beyond the pixel font.
+- Shared styles live in `assets/` (arcade-shell); each game is a standalone
+  module under `games/<name>/`.
+- Cache busting: bump the `?v=N` query on CSS/JS links whenever those files change.

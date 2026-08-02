@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PokéSnake</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='46' fill='%23fff' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M4 50 a46 46 0 0 1 92 0 z' fill='%23ee1515'/%3E%3Crect x='4' y='44' width='92' height='12' fill='%23212121'/%3E%3Ccircle cx='50' cy='50' r='14' fill='%23fff' stroke='%23212121' stroke-width='6'/%3E%3C/svg%3E">
+  <title>AstroSnake</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='54' rx='46' ry='14' fill='none' stroke='%23ffcb05' stroke-width='7' transform='rotate(-18 50 54)'/%3E%3Ccircle cx='50' cy='50' r='28' fill='%23f08030' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M28 44 a28 28 0 0 1 44 -8' fill='none' stroke='%23ffcb05' stroke-width='8'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../../assets/css/theme.css?v=4">
-  <link rel="stylesheet" href="snake.css?v=4">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=5">
+  <link rel="stylesheet" href="snake.css?v=5">
 </head>
 <body>
 
   <header class="game-header">
-    <a class="back-link" href="../../index.html">← PokéArcade</a>
-    <h1>POKéSNAKE</h1>
+    <a class="back-link" href="../../index.html">← AstroArcade</a>
+    <h1>ASTROSNAKE</h1>
     <div class="header-right">
       <button id="btn-sound" class="sound-btn js-sound-icon" title="Sound on/off (M)">🔊</button>
       <div class="pokeball" style="--size:28px" aria-hidden="true"></div>
@@ -29,10 +29,10 @@
       <canvas id="board" width="408" height="408"></canvas>
       <div class="fx-label" id="fx"></div>
       <div class="overlay" id="overlay">
-        <h2 id="overlay-title">POKéSNAKE</h2>
+        <h2 id="overlay-title">ASTROSNAKE</h2>
         <p id="overlay-text">Press ENTER or tap to start</p>
         <div class="ranking-box" id="ranking-box" hidden>
-          <span class="ranking-title">★ TOP CATCHES ★</span>
+          <span class="ranking-title">★ TOP PILOTS ★</span>
           <ol class="ranking" id="ranking"></ol>
         </div>
       </div>
@@ -41,7 +41,7 @@
     <!-- Stats -->
     <aside class="side-panel">
       <div class="panel-box">
-        <h3>POKéDEX</h3>
+        <h3>STAR LOG</h3>
         <div class="stat-row">
           <span class="stat-label">SCORE</span>
           <span class="stat-value" id="stat-score">0</span>
@@ -62,8 +62,8 @@
       <div class="panel-box">
         <h3>HOW TO</h3>
         <p class="howto">
-          Catch Poké Balls to grow.<br>
-          Golden Great Balls are worth +50 — but they roll away fast.
+          Gobble up stars to grow.<br>
+          Golden comets are worth +50 — but they fly away fast.
           Don't hit the walls or yourself!
         </p>
       </div>
@@ -89,9 +89,9 @@
     <span><kbd>M</kbd> Sound</span>
   </footer>
 
-  <script src="js/engine.js?v=4"></script>
-  <script src="js/sound.js?v=4"></script>
-  <script src="js/render.js?v=4"></script>
-  <script src="js/main.js?v=4"></script>
+  <script src="js/engine.js?v=5"></script>
+  <script src="js/sound.js?v=5"></script>
+  <script src="js/render.js?v=5"></script>
+  <script src="js/main.js?v=5"></script>
 </body>
 </html>

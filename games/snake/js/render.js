@@ -1,10 +1,10 @@
 'use strict';
 
 /* ============================================================
-   PokéSnake — canvas renderer.
-   The snake is one connected rounded body (grass-green) with a
-   face on its head; food is a tiny Poké Ball, the bonus is a
-   blinking golden ball.
+   AstroSnake — canvas renderer.
+   The star worm is one connected rounded body (teal) with a
+   face and a glowing feeler; food is a golden star, the bonus
+   is a blinking comet.
    ============================================================ */
 
 (function (NS) {
@@ -31,11 +31,11 @@
     const CELL = Math.floor(canvas.width / COLS);
 
     const screenBg = cssVar('--poke-screen');
-    const green = cssVar('--type-grass');
-    const greenDark = '#3f7a45';
-    const greenBelly = '#a5e0aa';
+    const worm = '#56cfe1';
+    const wormDark = '#2b7a8c';
     const ink = cssVar('--poke-ink');
-    const red = cssVar('--poke-red');
+    const gold = '#ffcb05';
+    const goldDark = '#c7a008';
 
     /* Fill the union of snake cells with rounded outer corners. */
     function snakeBlob(pad, fillStyle) {
@@ -55,8 +55,8 @@
     }
 
     function drawSnake() {
-      snakeBlob(1.5, greenDark);
-      snakeBlob(3.5, green);
+      snakeBlob(1.5, wormDark);
+      snakeBlob(3.5, worm);
 
       // belly spots on every other segment (skip the head)
       ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
@@ -86,42 +86,63 @@
         ctx.arc(ex + dx * eyeR * 0.4, ey + dy * eyeR * 0.4, eyeR * 0.55, 0, Math.PI * 2);
         ctx.fill();
       }
-      // flicking tongue
-      ctx.strokeStyle = red;
+      // glowing feeler antenna
+      ctx.strokeStyle = wormDark;
       ctx.lineWidth = Math.max(1.5, CELL * 0.08);
       ctx.lineCap = 'round';
       ctx.beginPath();
       ctx.moveTo(cx + dx * CELL * 0.4, cy + dy * CELL * 0.4);
-      ctx.lineTo(cx + dx * CELL * 0.62, cy + dy * CELL * 0.62);
+      ctx.lineTo(cx + dx * CELL * 0.66, cy + dy * CELL * 0.66);
       ctx.stroke();
+      ctx.fillStyle = gold;
+      ctx.beginPath();
+      ctx.arc(cx + dx * CELL * 0.7, cy + dy * CELL * 0.7, CELL * 0.09, 0, Math.PI * 2);
+      ctx.fill();
     }
 
-    /* A tiny Poké Ball. */
-    function drawBall(x, y, radius, topColor) {
+    /* A five-point golden star. */
+    function drawStar(x, y, radius) {
       const cx = (x + 0.5) * CELL;
       const cy = (y + 0.5) * CELL;
       ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.fillStyle = '#f4f6fb';
+      for (let i = 0; i < 10; i++) {
+        const r = i % 2 === 0 ? radius : radius * 0.45;
+        const a = -Math.PI / 2 + (i * Math.PI) / 5;
+        const px = cx + Math.cos(a) * r;
+        const py = cy + Math.sin(a) * r;
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fillStyle = gold;
       ctx.fill();
+      ctx.strokeStyle = goldDark;
+      ctx.lineWidth = 2;
+      ctx.lineJoin = 'round';
+      ctx.stroke();
+    }
+
+    /* A golden comet with a little tail. */
+    function drawComet(x, y, radius) {
+      const cx = (x + 0.5) * CELL;
+      const cy = (y + 0.5) * CELL;
+      for (let i = 3; i >= 1; i--) {
+        ctx.fillStyle = 'rgba(255, 203, 5, ' + (0.16 * i) + ')';
+        ctx.beginPath();
+        ctx.arc(cx + i * radius * 0.55, cy - i * radius * 0.55, radius * (1 - i * 0.18), 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.beginPath();
-      ctx.arc(cx, cy, radius, Math.PI, Math.PI * 2);
-      ctx.fillStyle = topColor;
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.fillStyle = gold;
       ctx.fill();
       ctx.strokeStyle = ink;
       ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.moveTo(cx - radius, cy);
-      ctx.lineTo(cx + radius, cy);
       ctx.stroke();
+      ctx.fillStyle = '#fff6c9';
       ctx.beginPath();
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius * 0.28, 0, Math.PI * 2);
-      ctx.fillStyle = '#ffffff';
+      ctx.arc(cx - radius * 0.3, cy - radius * 0.3, radius * 0.3, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
     }
 
     function draw(now) {
@@ -130,8 +151,8 @@
       ctx.fillStyle = screenBg;
       ctx.fillRect(0, 0, w, h);
 
-      // faint grid
-      ctx.strokeStyle = 'rgba(15, 56, 15, 0.15)';
+      // faint space-grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
       ctx.lineWidth = 1;
       for (let x = 1; x < COLS; x++) {
         ctx.beginPath();
@@ -147,14 +168,14 @@
       }
 
       if (engine.food) {
-        drawBall(engine.food.x, engine.food.y, CELL * 0.36, red);
+        drawStar(engine.food.x, engine.food.y, CELL * 0.4);
       }
 
       if (engine.bonus) {
         // blink faster as it is about to disappear
         const urgency = engine.bonus.ttl < BONUS_TTL_MS / 3 ? 90 : 220;
         if (Math.floor(now / urgency) % 2 === 0) {
-          drawBall(engine.bonus.x, engine.bonus.y, CELL * 0.42, '#f0b400');
+          drawComet(engine.bonus.x, engine.bonus.y, CELL * 0.36);
         }
       }
 

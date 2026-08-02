@@ -90,14 +90,14 @@
       onCatch(isBonus) {
         if (isBonus) {
           Sound.sfx.bonus();
-          showFX('GREAT CATCH! +50', true);
+          showFX('COMET CAUGHT! +50', true);
         } else {
           Sound.sfx.catch();
         }
       },
       onBonusSpawn() {
         Sound.sfx.spawn();
-        showFX('A GREAT BALL appeared!');
+        showFX('A COMET is passing by!');
       },
       onLevelUp(level) {
         Sound.sfx.levelUp();
@@ -153,7 +153,7 @@
       lastOverlayState = state;
 
       if (engine.status === 'ready') {
-        els.overlayTitle.textContent = 'POKéSNAKE';
+        els.overlayTitle.textContent = 'ASTROSNAKE';
         els.overlayText.textContent = 'Press ENTER or tap to start';
         renderRanking();
       } else if (engine.status === 'paused') {
@@ -167,7 +167,7 @@
       } else if (engine.status === 'over') {
         els.overlayTitle.textContent = 'GAME OVER';
         els.overlayText.textContent =
-          'The wild snake fainted! · Score ' + engine.score + ' · ENTER to retry';
+          'The star worm crashed! · Score ' + engine.score + ' · ENTER to retry';
         renderRanking();
       }
     }

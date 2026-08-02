@@ -1,34 +1,39 @@
 /* ============================================================
-   PokéArcade — shared theme (arcade-shell)
-   Tokens and reusable components for every game.
+   AstroArcade — shared theme (arcade-shell)
+   Retro pixel style in deep space. Tokens and reusable
+   components for every game.
+   NOTE: some token names (--poke-*) are legacy from the first
+   theme; only their values changed during the space rework.
    ============================================================ */
 
 :root {
-  /* Poké Ball & Pikachu palette */
-  --poke-red: #ee1515;
+  /* Core palette: arcade accents on deep space */
+  --poke-red: #ee1515;      /* rocket red — primary accent */
   --poke-red-dark: #b00b0b;
-  --poke-yellow: #ffcb05;
+  --poke-yellow: #ffcb05;   /* star yellow */
   --poke-yellow-dark: #c7a008;
   --poke-blue: #3b4cca;
   --poke-blue-light: #7fc7ff;
-  --poke-cream: #f8f0d8;
+  --poke-cream: #f8f0d8;    /* panel background */
   --poke-ink: #212121;
   --poke-white: #ffffff;
-  --poke-screen: #9bbc0f; /* Game Boy screen green */
-  --poke-screen-dark: #0f380f;
+  --space-deep: #0d1226;    /* page background */
+  --space-panel: #1b2447;   /* console header */
+  --poke-screen: #101733;   /* playfield: deep space */
+  --poke-screen-dark: #060a18;
 
-  /* Pokémon type colors (used for Tetris pieces) */
-  --type-electric: #f8d030;
-  --type-fire: #f08030;
-  --type-water: #6890f0;
-  --type-grass: #78c850;
-  --type-psychic: #f85888;
-  --type-ice: #98d8d8;
-  --type-dragon: #7038f8;
+  /* Cosmic element colors (Tetris pieces) */
+  --type-comet: #98d8d8;
+  --type-planet: #6890f0;
+  --type-rocket: #f08030;
+  --type-star: #f8d030;
+  --type-ufo: #78c850;
+  --type-moon: #7038f8;
+  --type-plasma: #f85888;
 
   --font-pixel: 'Press Start 2P', 'Courier New', monospace;
   --pixel-border: 4px solid var(--poke-ink);
-  --pixel-shadow: 6px 6px 0 rgba(33, 33, 33, 0.9);
+  --pixel-shadow: 6px 6px 0 rgba(0, 0, 0, 0.55);
 }
 
 * {
@@ -38,17 +43,19 @@
 body {
   margin: 0;
   font-family: var(--font-pixel);
-  color: var(--poke-ink);
-  background-color: var(--poke-cream);
-  /* subtle pixel grid, like walking through tall grass */
+  color: var(--poke-cream);
+  background-color: var(--space-deep);
+  /* pixel starfield: three layers of repeating star dots */
   background-image:
-    linear-gradient(rgba(120, 200, 80, 0.07) 2px, transparent 2px),
-    linear-gradient(90deg, rgba(120, 200, 80, 0.07) 2px, transparent 2px);
-  background-size: 24px 24px;
+    radial-gradient(rgba(255, 255, 255, 0.9) 1px, transparent 1.6px),
+    radial-gradient(rgba(127, 216, 232, 0.7) 1px, transparent 1.6px),
+    radial-gradient(rgba(255, 203, 5, 0.55) 1px, transparent 1.6px);
+  background-size: 220px 220px, 310px 310px, 430px 430px;
+  background-position: 0 0, 90px 130px, 170px 50px;
   image-rendering: pixelated;
 }
 
-/* ---------- Poké Ball button ---------- */
+/* ---------- Launch button ---------- */
 .poke-btn {
   display: inline-flex;
   align-items: center;
@@ -67,13 +74,13 @@ body {
 
 .poke-btn:hover {
   transform: translate(2px, 2px);
-  box-shadow: 4px 4px 0 rgba(33, 33, 33, 0.9);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.55);
   background: var(--poke-red-dark);
 }
 
 .poke-btn:active {
   transform: translate(6px, 6px);
-  box-shadow: 0 0 0 rgba(33, 33, 33, 0.9);
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0.55);
 }
 
 .poke-btn[aria-disabled='true'] {
@@ -82,7 +89,7 @@ body {
   pointer-events: none;
 }
 
-/* ---------- Type badges (like Pokémon battle UI) ---------- */
+/* ---------- Element badges ---------- */
 .type-badge {
   display: inline-block;
   padding: 6px 10px;
@@ -93,15 +100,15 @@ body {
   border-radius: 2px;
 }
 
-.type-badge--electric { background: var(--type-electric); color: var(--poke-ink); text-shadow: none; }
-.type-badge--fire     { background: var(--type-fire); }
-.type-badge--water    { background: var(--type-water); }
-.type-badge--grass    { background: var(--type-grass); }
-.type-badge--psychic  { background: var(--type-psychic); }
-.type-badge--ice      { background: var(--type-ice); color: var(--poke-ink); text-shadow: none; }
-.type-badge--dragon   { background: var(--type-dragon); }
+.type-badge--star   { background: var(--type-star); color: var(--poke-ink); text-shadow: none; }
+.type-badge--rocket { background: var(--type-rocket); }
+.type-badge--planet { background: var(--type-planet); }
+.type-badge--ufo    { background: var(--type-ufo); }
+.type-badge--plasma { background: var(--type-plasma); }
+.type-badge--comet  { background: var(--type-comet); color: var(--poke-ink); text-shadow: none; }
+.type-badge--moon   { background: var(--type-moon); }
 
-/* ---------- Poké Ball (pure CSS, spins and bounces) ---------- */
+/* ---------- Planet orb (pure CSS, banded gas giant) ---------- */
 .pokeball {
   --size: 40px;
   width: var(--size);
@@ -110,8 +117,10 @@ body {
   border-radius: 50%;
   border: 3px solid var(--poke-ink);
   background:
-    radial-gradient(circle at center, var(--poke-white) 0 14%, var(--poke-ink) 15% 24%, transparent 25%),
-    linear-gradient(to bottom, var(--poke-red) 0 45%, var(--poke-ink) 45% 55%, var(--poke-white) 55% 100%);
+    radial-gradient(circle at 32% 28%, rgba(255, 255, 255, 0.75) 0 12%, transparent 32%),
+    linear-gradient(to bottom,
+      #f08030 0 30%, #ffcb05 30% 45%, #f08030 45% 62%,
+      #c75b1a 62% 78%, #f08030 78% 100%);
 }
 
 .pokeball--bounce {
@@ -125,9 +134,10 @@ body {
   80%      { transform: translateY(-5px) rotate(-4deg); }
 }
 
-/* ---------- "Pokédex screen" panel ---------- */
+/* ---------- Console panel ---------- */
 .dex-panel {
-  background: var(--poke-white);
+  background: var(--poke-cream);
+  color: var(--poke-ink);
   border: var(--pixel-border);
   box-shadow: var(--pixel-shadow);
   padding: 20px;
@@ -139,6 +149,7 @@ body {
   border-top: var(--pixel-border);
   border-bottom: var(--pixel-border);
   background: var(--poke-yellow);
+  color: var(--poke-ink);
   padding: 10px 0;
   white-space: nowrap;
 }

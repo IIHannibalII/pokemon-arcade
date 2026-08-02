@@ -1,21 +1,10 @@
 /* ============================================================
-   PokéArcade — hub page styles (index.html)
+   AstroArcade — hub page styles (index.html)
    ============================================================ */
 
-/* Locally generated pixel-art meadow (SDXL), dimmed by a cream
-   overlay so cards and text stay readable. */
-body {
-  background-image:
-    linear-gradient(rgba(248, 240, 216, 0.78), rgba(248, 240, 216, 0.78)),
-    url('../img/hub-bg.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-
-/* ---------- Pokédex-style header ---------- */
+/* ---------- Starship console header ---------- */
 .pokedex-top {
-  background: var(--poke-red);
+  background: var(--space-panel);
   border-bottom: 6px solid var(--poke-ink);
   padding: 18px 28px 22px;
   position: relative;
@@ -28,14 +17,21 @@ body {
   margin-bottom: 14px;
 }
 
-/* Big blue lens, just like the Pokédex camera */
+/* Round radar screen */
 .dex-lens {
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  border: 4px solid var(--poke-white);
+  border: 4px solid var(--poke-cream);
   outline: 3px solid var(--poke-ink);
-  background: radial-gradient(circle at 35% 30%, #d8f0ff 0 18%, var(--poke-blue-light) 30%, var(--poke-blue) 75%);
+  background:
+    conic-gradient(from 0deg, rgba(120, 200, 80, 0.55), transparent 90deg, transparent 360deg),
+    radial-gradient(circle at center, #123322 0 40%, #0a1f14 75%);
+  animation: radar-spin 4s linear infinite;
+}
+
+@keyframes radar-spin {
+  to { transform: rotate(360deg); }
 }
 
 .dex-led {
@@ -58,19 +54,19 @@ body {
   margin: 0;
   font-size: clamp(22px, 5vw, 42px);
   color: var(--poke-yellow);
-  /* signature yellow logo with a blue outline, Pokémon-logo style */
+  /* yellow arcade logo with a red outline */
   text-shadow:
-    3px 3px 0 var(--poke-blue),
-    -3px 3px 0 var(--poke-blue),
-    3px -3px 0 var(--poke-blue),
-    -3px -3px 0 var(--poke-blue),
-    6px 6px 0 rgba(0, 0, 0, 0.35);
+    3px 3px 0 var(--poke-red),
+    -3px 3px 0 var(--poke-red),
+    3px -3px 0 var(--poke-red),
+    -3px -3px 0 var(--poke-red),
+    6px 6px 0 rgba(0, 0, 0, 0.5);
   letter-spacing: 2px;
 }
 
 .pokedex-top p {
   margin: 12px 0 0;
-  color: var(--poke-white);
+  color: var(--poke-cream);
   font-size: 11px;
   line-height: 1.9;
 }
@@ -85,13 +81,14 @@ body {
   padding: 0 24px;
 }
 
-/* Game card — styled like a Pokémon TCG card */
+/* Game card — a mission briefing plate */
 .game-card {
   display: flex;
   flex-direction: column;
   gap: 14px;
   padding: 18px;
-  background: linear-gradient(160deg, #fff8dc 0%, var(--poke-white) 60%);
+  background: var(--poke-cream);
+  color: var(--poke-ink);
   border: var(--pixel-border);
   box-shadow: var(--pixel-shadow);
   transition: transform 0.1s steps(2), box-shadow 0.1s steps(2);
@@ -99,7 +96,7 @@ body {
 
 .game-card:hover {
   transform: translate(-3px, -3px);
-  box-shadow: 9px 9px 0 rgba(33, 33, 33, 0.9);
+  box-shadow: 9px 9px 0 rgba(0, 0, 0, 0.55);
 }
 
 .game-card__head {
@@ -122,15 +119,20 @@ body {
   white-space: nowrap;
 }
 
-/* Preview window inside the card — green Game Boy screen */
+/* Preview window inside the card — deep space viewport */
 .game-card__screen {
   min-height: 190px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--poke-screen);
+  background:
+    radial-gradient(rgba(255, 255, 255, 0.8) 1px, transparent 1.5px),
+    radial-gradient(rgba(127, 216, 232, 0.6) 1px, transparent 1.5px),
+    var(--poke-screen);
+  background-size: 90px 90px, 140px 140px, auto;
+  background-position: 0 0, 40px 60px;
   border: var(--pixel-border);
-  box-shadow: inset 4px 4px 0 rgba(15, 56, 15, 0.25);
+  box-shadow: inset 4px 4px 0 rgba(0, 0, 0, 0.4);
   position: relative;
   overflow: hidden;
 }
@@ -153,7 +155,7 @@ body {
   justify-content: center;
 }
 
-/* --- Mini tetromino art on the Tetris card screen --- */
+/* --- Mini tetromino art on the AstroTetris card screen --- */
 .tetro-preview {
   display: grid;
   grid-template-columns: repeat(6, 26px);
@@ -162,7 +164,7 @@ body {
 }
 
 .tetro-cell {
-  border: 2px solid rgba(15, 56, 15, 0.55);
+  border: 2px solid rgba(255, 255, 255, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,13 +172,13 @@ body {
   line-height: 1;
 }
 
-.tetro-cell--electric { background: var(--type-electric); }
-.tetro-cell--fire     { background: var(--type-fire); }
-.tetro-cell--water    { background: var(--type-water); }
-.tetro-cell--psychic  { background: var(--type-psychic); }
-.tetro-cell--empty    { border-color: transparent; }
+.tetro-cell--star   { background: var(--type-star); }
+.tetro-cell--rocket { background: var(--type-rocket); }
+.tetro-cell--planet { background: var(--type-planet); }
+.tetro-cell--moon   { background: var(--type-moon); }
+.tetro-cell--empty  { border-color: transparent; }
 
-/* --- "Who's that Pokémon?" silhouette on the Snake card --- */
+/* --- Star worm on the AstroSnake card --- */
 .whos-that {
   display: flex;
   flex-direction: column;
@@ -185,24 +187,12 @@ body {
 }
 
 .whos-that svg {
-  filter: drop-shadow(3px 3px 0 rgba(15, 56, 15, 0.4));
+  filter: drop-shadow(3px 3px 0 rgba(0, 0, 0, 0.45));
 }
 
 .whos-that span {
   font-size: 9px;
-  color: var(--poke-screen-dark);
-}
-
-.coming-soon-stamp {
-  position: absolute;
-  top: 12px;
-  right: -34px;
-  transform: rotate(35deg);
-  background: var(--poke-red);
-  color: var(--poke-white);
-  font-size: 9px;
-  padding: 6px 40px;
-  border: 3px solid var(--poke-ink);
+  color: var(--poke-cream);
 }
 
 /* ---------- Footer ---------- */
@@ -211,5 +201,5 @@ body {
   font-size: 9px;
   line-height: 1.8;
   padding: 26px 20px 34px;
-  color: #6b6b6b;
+  color: #8b93ad;
 }
