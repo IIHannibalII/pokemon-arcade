@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/theme.css?v=7">
-  <link rel="stylesheet" href="assets/css/hub.css?v=7">
+  <link rel="stylesheet" href="assets/css/theme.css?v=8">
+  <link rel="stylesheet" href="assets/css/hub.css?v=8">
 </head>
 <body>
 
@@ -27,12 +27,64 @@
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker__inner">
-      🚀 ASTROTETRIS is now live! &nbsp;·&nbsp; 🐛 ASTROSNAKE — feed the star worm! &nbsp;·&nbsp;
-      ⭐ Clear every orbit and become the Fleet Commander! &nbsp;·&nbsp; 🛸 High scores are saved in your Star Log
+      🧱 NEW: ASTROBREAKER — smash the space blocks! &nbsp;·&nbsp; 🚀 ASTROTETRIS is live! &nbsp;·&nbsp;
+      🐛 ASTROSNAKE — feed the star worm! &nbsp;·&nbsp; ⭐ Become the Fleet Commander! &nbsp;·&nbsp; 🛸 High scores are saved in your Star Log
     </div>
   </div>
 
   <main class="games-grid">
+
+    <!-- ======== Card: AstroBreaker ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>AstroBreaker</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="230" height="150" viewBox="0 0 230 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g stroke="#212121" stroke-width="2">
+            <rect x="15" y="12" width="38" height="16" fill="#f85888"/>
+            <rect x="57" y="12" width="38" height="16" fill="#f85888"/>
+            <rect x="99" y="12" width="38" height="16" fill="#f85888"/>
+            <rect x="141" y="12" width="38" height="16" fill="#f85888"/>
+            <rect x="183" y="12" width="38" height="16" fill="#f85888"/>
+            <rect x="36" y="32" width="38" height="16" fill="#f08030"/>
+            <rect x="78" y="32" width="38" height="16" fill="#f08030"/>
+            <rect x="120" y="32" width="38" height="16" fill="#f08030"/>
+            <rect x="162" y="32" width="38" height="16" fill="#f08030"/>
+            <rect x="57" y="52" width="38" height="16" fill="#f8d030"/>
+            <rect x="99" y="52" width="38" height="16" fill="#f8d030"/>
+            <rect x="141" y="52" width="38" height="16" fill="#f8d030"/>
+          </g>
+          <circle cx="115" cy="96" r="12" fill="rgba(255,203,5,0.3)"/>
+          <circle cx="115" cy="96" r="6" fill="#ffcb05"/>
+          <g stroke="#212121" stroke-width="2">
+            <rect x="82" y="126" width="66" height="10" fill="#f4f6fb"/>
+            <rect x="82" y="126" width="10" height="10" fill="#ee1515"/>
+            <rect x="138" y="126" width="10" height="10" fill="#ee1515"/>
+            <rect x="109" y="128" width="12" height="6" fill="#7fc7ff"/>
+          </g>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--rocket">🚀 Action</span>
+        <span class="type-badge type-badge--plasma">✨ Classic</span>
+      </div>
+
+      <p class="game-card__desc">
+        Deflect the energy orb and smash waves of space blocks.
+        Catch power capsules — wide ship, slow orb, multiball and spare ships!
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/breaker/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
 
     <!-- ======== Card: AstroTetris ======== -->
     <article class="game-card">

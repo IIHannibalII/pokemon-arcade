@@ -15,6 +15,10 @@ astro-arcade/
 │       ├── theme.css     # Shared theme (arcade-shell): tokens, buttons, badges, starfield
 │       └── hub.css       # Hub-page-only styles
 └── games/
+    ├── breaker/          # AstroBreaker — deflect the orb, smash block waves, catch capsules
+    │   ├── index.html
+    │   ├── breaker.css
+    │   └── js/           # engine.js, sound.js, render.js, main.js
     ├── snake/            # AstroSnake — a star worm gobbles stars, comets are bonus
     │   ├── index.html
     │   ├── snake.css
@@ -42,6 +46,8 @@ astro-arcade/
 7. ✅ Full re-theme to an original space setting (was Pokémon-styled)
 8. ✅ AI-generated pixel-art backgrounds (local ComfyUI + SDXL): nebula hub,
    alien night for Tetris, comet streaks for Snake
+9. ✅ AstroBreaker: breakout-style game with power capsules (wide / slow /
+   multiball / extra ship), waves, leaderboard, mouse + touch controls
 
 ## Principles
 
