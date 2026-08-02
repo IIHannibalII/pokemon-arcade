@@ -82,13 +82,34 @@ body {
   line-height: 1.9;
 }
 
+/* ---------- Deck section titles ---------- */
+.deck-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 980px;
+  margin: 42px auto 0;
+  padding: 0 24px;
+  font-size: 14px;
+  color: var(--poke-yellow);
+  text-shadow: 2px 2px 0 var(--poke-red);
+  letter-spacing: 1px;
+}
+
+.deck-title::after {
+  content: '';
+  flex: 1;
+  height: 4px;
+  background: rgba(248, 240, 216, 0.25);
+}
+
 /* ---------- Game cards grid ---------- */
 .games-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 32px;
   max-width: 980px;
-  margin: 40px auto;
+  margin: 20px auto 40px;
   padding: 0 24px;
 }
 

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroSweeper</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='54' rx='46' ry='14' fill='none' stroke='%23ffcb05' stroke-width='7' transform='rotate(-18 50 54)'/%3E%3Ccircle cx='50' cy='50' r='28' fill='%23f08030' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M28 44 a28 28 0 0 1 44 -8' fill='none' stroke='%23ffcb05' stroke-width='8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=1">
+  <link rel="stylesheet" href="sweeper.css?v=1">
+</head>
+<body>
+
+  <header class="game-header">
+    <a class="back-link" href="../../index.html">← AstroArcade</a>
+    <h1>ASTROSWEEPER</h1>
+    <div class="header-right">
+      <button id="btn-flag" class="sound-btn" title="Beacon mode: tap places beacons (F)">🚩</button>
+      <button id="btn-pause" class="sound-btn" title="Pause (P)">⏸</button>
+      <button id="btn-sound" class="sound-btn" title="Sound on/off (M)">🔊</button>
+      <div class="pokeball" style="--size:28px" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main class="sweeper-layout">
+
+    <!-- Playfield -->
+    <div class="board-wrap">
+      <canvas id="board" width="420" height="420"></canvas>
+      <div class="fx-label" id="fx"></div>
+      <div class="overlay" id="overlay" hidden>
+        <h2 id="overlay-title">ASTROSWEEPER</h2>
+        <p id="overlay-text"></p>
+        <div class="ranking-box" id="ranking-box" hidden>
+          <span class="ranking-title">★ BEST SCANS ★</span>
+          <ol class="ranking" id="ranking"></ol>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats + difficulty -->
+    <aside class="side-panel">
+      <div class="panel-box">
+        <h3>STAR LOG</h3>
+        <div class="stat-row">
+          <span class="stat-label">ASTEROIDS</span>
+          <span class="stat-value" id="stat-mines">10</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">TIME</span>
+          <span class="stat-value" id="stat-time">0.0s</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">BEST</span>
+          <span class="stat-value" id="stat-besttime">—</span>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>SECTOR</h3>
+        <div class="diff-list">
+          <button type="button" class="diff-btn" data-diff="easy">I · 9×9</button>
+          <button type="button" class="diff-btn" data-diff="medium">II · 12×12</button>
+          <button type="button" class="diff-btn" data-diff="hard">III · 14×14</button>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>SCAN</h3>
+        <div class="diff-list">
+          <button type="button" class="diff-btn" id="btn-new">NEW SCAN (R)</button>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>HOW TO</h3>
+        <p class="howto">
+          Scan the sector: numbers show how many asteroids touch that cell.
+          Right-click / long-press / 🚩-mode places a beacon.
+          Click a satisfied number to scan around it. First scan is always safe.
+        </p>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Controls reference -->
+  <footer class="controls-strip">
+    <span>Click — Scan</span>
+    <span>Right-click / <kbd>F</kbd>-mode — Beacon</span>
+    <span>Click a number — Chord</span>
+    <span><kbd>P</kbd> Pause</span>
+    <span><kbd>R</kbd> New scan</span>
+    <span><kbd>M</kbd> Sound</span>
+  </footer>
+
+  <script src="js/engine.js?v=1"></script>
+  <script src="js/sound.js?v=1"></script>
+  <script src="js/render.js?v=1"></script>
+  <script src="js/main.js?v=1"></script>
+</body>
+</html>

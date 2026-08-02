@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/theme.css?v=8">
-  <link rel="stylesheet" href="assets/css/hub.css?v=8">
+  <link rel="stylesheet" href="assets/css/theme.css?v=9">
+  <link rel="stylesheet" href="assets/css/hub.css?v=9">
 </head>
 <body>
 
@@ -27,12 +27,15 @@
 
   <div class="ticker" aria-hidden="true">
     <div class="ticker__inner">
-      🧱 NEW: ASTROBREAKER — smash the space blocks! &nbsp;·&nbsp; 🚀 ASTROTETRIS is live! &nbsp;·&nbsp;
-      🐛 ASTROSNAKE — feed the star worm! &nbsp;·&nbsp; ⭐ Become the Fleet Commander! &nbsp;·&nbsp; 🛸 High scores are saved in your Star Log
+      🧠 NEW PUZZLE DECK: ASTROSWEEPER and ASTROSUDOKU! &nbsp;·&nbsp; 🧱 ASTROBREAKER — smash the space blocks! &nbsp;·&nbsp;
+      🚀 ASTROTETRIS is live! &nbsp;·&nbsp; 🐛 ASTROSNAKE — feed the star worm! &nbsp;·&nbsp; 🛸 High scores are saved in your Star Log
     </div>
   </div>
 
-  <main class="games-grid">
+  <main>
+
+  <h2 class="deck-title">🕹 ARCADE DECK</h2>
+  <div class="games-grid">
 
     <!-- ======== Card: AstroBreaker ======== -->
     <article class="game-card">
@@ -187,6 +190,108 @@
         </a>
       </div>
     </article>
+
+  </div>
+
+  <h2 class="deck-title">🧠 PUZZLE DECK</h2>
+  <div class="games-grid">
+
+    <!-- ======== Card: AstroSweeper ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>AstroSweeper</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="180" height="140" viewBox="0 0 180 140" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <g>
+            <rect x="10" y="10" width="36" height="36" fill="#2b3358" stroke="#111731" stroke-width="2"/>
+            <rect x="50" y="10" width="36" height="36" fill="#2b3358" stroke="#111731" stroke-width="2"/>
+            <rect x="90" y="10" width="36" height="36" fill="#0a0f22"/>
+            <rect x="130" y="10" width="36" height="36" fill="#0a0f22"/>
+            <rect x="10" y="50" width="36" height="36" fill="#2b3358" stroke="#111731" stroke-width="2"/>
+            <rect x="50" y="50" width="36" height="36" fill="#0a0f22"/>
+            <rect x="90" y="50" width="36" height="36" fill="#0a0f22"/>
+            <rect x="130" y="50" width="36" height="36" fill="#2b3358" stroke="#111731" stroke-width="2"/>
+            <rect x="10" y="90" width="36" height="36" fill="#0a0f22"/>
+            <rect x="50" y="90" width="36" height="36" fill="#0a0f22"/>
+            <rect x="90" y="90" width="36" height="36" fill="#2b3358" stroke="#111731" stroke-width="2"/>
+            <rect x="130" y="90" width="36" height="36" fill="#0a0f22"/>
+          </g>
+          <text x="108" y="34" font-size="20" fill="#7fc7ff" font-family="'Press Start 2P', monospace" text-anchor="middle">1</text>
+          <text x="68" y="74" font-size="20" fill="#78c850" font-family="'Press Start 2P', monospace" text-anchor="middle">2</text>
+          <text x="108" y="74" font-size="20" fill="#f85888" font-family="'Press Start 2P', monospace" text-anchor="middle">3</text>
+          <circle cx="28" cy="108" r="11" fill="#9aa3b2" stroke="#212121" stroke-width="2"/>
+          <circle cx="24" cy="104" r="3.5" fill="rgba(0,0,0,0.35)"/>
+          <line x1="148" y1="60" x2="148" y2="78" stroke="#f4f6fb" stroke-width="3"/>
+          <path d="M148 60 l12 5 -12 5 z" fill="#ee1515" stroke="#212121" stroke-width="1.5"/>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--comet">☄ Logic</span>
+        <span class="type-badge type-badge--ufo">🚩 Classic</span>
+      </div>
+
+      <p class="game-card__desc">
+        Scan the sector for hidden asteroids — the numbers count the neighbours.
+        Place beacons, clear the field against the clock. Three sector sizes.
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/sweeper/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
+    <!-- ======== Card: AstroSudoku ======== -->
+    <article class="game-card">
+      <div class="game-card__head">
+        <h2>AstroSudoku</h2>
+        <span class="game-card__hp">FUEL 100%</span>
+      </div>
+
+      <div class="game-card__screen">
+        <svg width="150" height="150" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <rect x="4" y="4" width="142" height="142" fill="#0a0f22" stroke="#f8f0d8" stroke-width="3"/>
+          <line x1="51" y1="4" x2="51" y2="146" stroke="#f8f0d8" stroke-width="3"/>
+          <line x1="99" y1="4" x2="99" y2="146" stroke="#f8f0d8" stroke-width="3"/>
+          <line x1="4" y1="51" x2="146" y2="51" stroke="#f8f0d8" stroke-width="3"/>
+          <line x1="4" y1="99" x2="146" y2="99" stroke="#f8f0d8" stroke-width="3"/>
+          <g font-family="'Press Start 2P', monospace" font-size="18" text-anchor="middle">
+            <text x="28" y="36" fill="#f8f0d8">5</text>
+            <text x="123" y="36" fill="#7fc7ff">3</text>
+            <text x="75" y="84" fill="#7fc7ff">7</text>
+            <text x="28" y="132" fill="#7fc7ff">1</text>
+            <text x="75" y="36" fill="#f8f0d8">9</text>
+            <text x="123" y="132" fill="#f8f0d8">4</text>
+            <text x="28" y="84" fill="#f8d030">★</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="game-card__badges">
+        <span class="type-badge type-badge--moon">🧠 Logic</span>
+        <span class="type-badge type-badge--star">⭐ Zen</span>
+      </div>
+
+      <p class="game-card__desc">
+        Decode the star chart: digits 1-9 once per row, column and sector.
+        Pencil notes, hints, and every chart has exactly one solution.
+      </p>
+
+      <div class="game-card__actions">
+        <a class="poke-btn" href="games/sudoku/index.html">
+          <span class="pokeball" style="--size:22px" aria-hidden="true"></span>
+          Play!
+        </a>
+      </div>
+    </article>
+
+  </div>
 
   </main>
 

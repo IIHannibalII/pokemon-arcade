@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AstroSudoku</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cellipse cx='50' cy='54' rx='46' ry='14' fill='none' stroke='%23ffcb05' stroke-width='7' transform='rotate(-18 50 54)'/%3E%3Ccircle cx='50' cy='50' r='28' fill='%23f08030' stroke='%23212121' stroke-width='6'/%3E%3Cpath d='M28 44 a28 28 0 0 1 44 -8' fill='none' stroke='%23ffcb05' stroke-width='8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/theme.css?v=1">
+  <link rel="stylesheet" href="sudoku.css?v=1">
+</head>
+<body>
+
+  <header class="game-header">
+    <a class="back-link" href="../../index.html">← AstroArcade</a>
+    <h1>ASTROSUDOKU</h1>
+    <div class="header-right">
+      <button id="btn-pause" class="sound-btn" title="Pause (P)">⏸</button>
+      <button id="btn-sound" class="sound-btn" title="Sound on/off (M)">🔊</button>
+      <div class="pokeball" style="--size:28px" aria-hidden="true"></div>
+    </div>
+  </header>
+
+  <main class="sudoku-layout">
+
+    <!-- Board + number pad -->
+    <div class="board-col">
+      <div class="board-wrap">
+        <canvas id="board" width="396" height="396"></canvas>
+        <div class="fx-label" id="fx"></div>
+        <div class="overlay" id="overlay" hidden>
+          <h2 id="overlay-title">ASTROSUDOKU</h2>
+          <p id="overlay-text"></p>
+          <div class="ranking-box" id="ranking-box" hidden>
+            <span class="ranking-title">★ BEST CHARTS ★</span>
+            <ol class="ranking" id="ranking"></ol>
+          </div>
+        </div>
+      </div>
+      <div class="numpad">
+        <button type="button" data-num="1">1</button>
+        <button type="button" data-num="2">2</button>
+        <button type="button" data-num="3">3</button>
+        <button type="button" data-num="4">4</button>
+        <button type="button" data-num="5">5</button>
+        <button type="button" data-num="6">6</button>
+        <button type="button" data-num="7">7</button>
+        <button type="button" data-num="8">8</button>
+        <button type="button" data-num="9">9</button>
+      </div>
+      <div class="toolpad">
+        <button type="button" id="btn-pencil" title="Pencil notes (N)">✏ NOTES</button>
+        <button type="button" id="btn-erase" title="Erase (Del)">⌫ ERASE</button>
+        <button type="button" id="btn-hint" title="Hint, +30s (H)">💡 HINT</button>
+      </div>
+    </div>
+
+    <!-- Stats + difficulty -->
+    <aside class="side-panel">
+      <div class="panel-box">
+        <h3>STAR LOG</h3>
+        <div class="stat-row">
+          <span class="stat-label">TIME</span>
+          <span class="stat-value" id="stat-time">0:00</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">BEST</span>
+          <span class="stat-value" id="stat-besttime">—</span>
+        </div>
+        <div class="stat-row">
+          <span class="stat-label">HINTS</span>
+          <span class="stat-value" id="stat-hints">0</span>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>CHART</h3>
+        <div class="diff-list">
+          <button type="button" class="diff-btn" data-diff="easy">EASY</button>
+          <button type="button" class="diff-btn" data-diff="medium">NORMAL</button>
+          <button type="button" class="diff-btn" data-diff="hard">HARD</button>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>GAME</h3>
+        <div class="diff-list">
+          <button type="button" class="diff-btn" id="btn-new">NEW CHART (R)</button>
+        </div>
+      </div>
+      <div class="panel-box">
+        <h3>HOW TO</h3>
+        <p class="howto">
+          Fill the star chart: digits 1-9 once per row, column and 3×3 sector.
+          Red digits clash. ✏ NOTES writes pencil marks.
+          💡 HINT reveals a cell for +30s. Every chart has one solution.
+        </p>
+      </div>
+    </aside>
+
+  </main>
+
+  <!-- Controls reference -->
+  <footer class="controls-strip">
+    <span>Click — Select</span>
+    <span><kbd>1</kbd>-<kbd>9</kbd> Enter</span>
+    <span><kbd>N</kbd> Notes</span>
+    <span><kbd>Del</kbd> Erase</span>
+    <span><kbd>H</kbd> Hint</span>
+    <span><kbd>P</kbd> Pause</span>
+    <span><kbd>R</kbd> New</span>
+    <span><kbd>M</kbd> Sound</span>
+  </footer>
+
+  <script src="js/engine.js?v=1"></script>
+  <script src="js/sound.js?v=1"></script>
+  <script src="js/render.js?v=1"></script>
+  <script src="js/main.js?v=1"></script>
+</body>
+</html>

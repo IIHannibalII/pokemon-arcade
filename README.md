@@ -23,6 +23,14 @@ astro-arcade/
     │   ├── index.html
     │   ├── snake.css
     │   └── js/           # engine.js, sound.js, render.js, main.js
+    ├── sweeper/          # AstroSweeper — minesweeper-style asteroid scan, 3 sector sizes
+    │   ├── index.html
+    │   ├── sweeper.css
+    │   └── js/           # engine.js, sound.js, render.js, main.js
+    ├── sudoku/           # AstroSudoku — generated star charts with a unique solution
+    │   ├── index.html
+    │   ├── sudoku.css
+    │   └── js/           # engine.js, sound.js, render.js, main.js
     └── tetris/           # AstroTetris — cosmic blocks, rocket partner, SRS rules
         ├── index.html
         ├── tetris.css
@@ -48,6 +56,10 @@ astro-arcade/
    alien night for Tetris, comet streaks for Snake
 9. ✅ AstroBreaker: breakout-style game with power capsules (wide / slow /
    multiball / extra ship), waves, leaderboard, mouse + touch controls
+10. ✅ Puzzle Deck (separate hub section): AstroSweeper — minesweeper-style
+    asteroid scanning with beacon mode and per-sector best times
+11. ✅ AstroSudoku: generated puzzles with a uniqueness guarantee, pencil
+    notes, conflict highlighting, hints with a time penalty
 
 ## Principles
 

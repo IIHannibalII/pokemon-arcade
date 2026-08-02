@@ -68,8 +68,12 @@
       ctx.fillRect(x, PADDLE_Y, p.w, 3);
       ctx.fillStyle = 'rgba(0, 0, 0, 0.25)';
       ctx.fillRect(x, PADDLE_Y + PADDLE_H - 3, p.w, 3);
-      // red wing tips
-      ctx.fillStyle = '#ee1515';
+      // wing tips: red, blinking yellow when the wide effect is
+      // about to expire
+      const wideLeft = engine.wideUntil ? engine.wideUntil - engine.clock : 0;
+      const expiring = wideLeft > 0 && wideLeft < 2500 &&
+        Math.floor(engine.clock / 150) % 2 === 0;
+      ctx.fillStyle = expiring ? '#ffcb05' : '#ee1515';
       ctx.fillRect(x, PADDLE_Y, 8, PADDLE_H);
       ctx.fillRect(x + p.w - 8, PADDLE_Y, 8, PADDLE_H);
       // cockpit
