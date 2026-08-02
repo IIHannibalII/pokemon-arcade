@@ -3,6 +3,17 @@
    Builds on the shared theme (theme.css).
    ============================================================ */
 
+/* Locally generated pixel-art alien night (SDXL) behind the
+   panels; dark overlay keeps the playfield the focus. */
+body {
+  background-image:
+    linear-gradient(rgba(6, 10, 24, 0.5), rgba(6, 10, 24, 0.5)),
+    url('../../assets/img/tetris-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .game-header {
   display: flex;
   align-items: center;

@@ -2,6 +2,17 @@
    AstroArcade — hub page styles (index.html)
    ============================================================ */
 
+/* Locally generated pixel-art nebula (SDXL), dimmed so the
+   cards and text stay readable. */
+body {
+  background-image:
+    linear-gradient(rgba(13, 18, 38, 0.72), rgba(13, 18, 38, 0.72)),
+    url('../img/hub-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 /* ---------- Starship console header ---------- */
 .pokedex-top {
   background: var(--space-panel);

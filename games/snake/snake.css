@@ -3,6 +3,17 @@
    Builds on the shared theme (theme.css).
    ============================================================ */
 
+/* Locally generated pixel-art comet streaks (SDXL) behind the
+   panels; strong overlay keeps the board the focus. */
+body {
+  background-image:
+    linear-gradient(rgba(6, 10, 24, 0.68), rgba(6, 10, 24, 0.68)),
+    url('../../assets/img/snake-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .game-header {
   display: flex;
   align-items: center;
